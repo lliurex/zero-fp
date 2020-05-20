@@ -6,7 +6,7 @@ Uploaders: Daniel Duran Vecino <daduve@gmail.com>
 Build-Depends: llxsrchelper,debhelper (>= 10), zero-dev, inkscape(>=0.47)
 Standards-Version: 4.1.2
 
-Package: izero-fp-administrativo
+Package: zero-fp-administrativo
 Architecture: all
 Depends: zero-center,epi-gtk
 Description: llx edition studio 
