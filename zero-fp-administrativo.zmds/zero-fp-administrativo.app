@@ -1,0 +1,17 @@
+Name=Fp Administrativo
+Name[es]=Fp Administrativo
+Name[en]=Fp Administrativo
+Name[qcv]=Fp Administratiu
+Name[ca_ES]=Fp Administratiu
+Comment=Select programs to install included in LliureX Fp Administrative
+Comment[es]=Selecciona los programas para instalar incluidos en la preselección de LliureX Fp Administrativo
+Comment[qcv]=Select programs to install included in LliureX Fp Administrative
+Comment[ca_ES]=Select programs to install included in LliureX Fp Administrative
+Icon=zero-fp-administrativo
+Groups=sudo;admins;
+Category=Software
+ScriptPath=zero-fp-administrativo.zmd
+Using=pkexec
+Service=False
+Modal=True
+Locks=zero-fp-administrativo
