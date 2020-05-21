@@ -1,0 +1,17 @@
+Name=Fp Computing
+Name[es]=Fp Informatica
+Name[en]=Fp Informatica
+Name[qcv]=Fp Informatica
+Name[ca_ES]=Fp Informatica
+Comment=Select programs to install included in LliureX Fp Computing
+Comment[es]=Selecciona los programas para instalar incluidos en la preselección de LliureX Fp Informatica
+Comment[qcv]=Select programs to install included in LliureX Fp Computing
+Comment[ca_ES]=Select programs to install included in LliureX Fp Computing
+Icon=zero-fp-informatica
+Groups=sudo;admins;
+Category=Software
+ScriptPath=zero-fp-informatica.zmd
+Using=pkexec
+Service=False
+Modal=True
+Locks=zero-fp-informatica

@@ -1,0 +1,18 @@
+{
+
+	"type":"apt",
+
+	"pkg_list": [{"name":"klavaro","custom_name":"Klavaro Touch typing tutor","custom_icon":"klavaro.png"},{"name":"keme","custom_name":"Keme Contabilidad","custom_icon":"keme.png"},{"name":"odoo","custom_name":"Odoo 13 Enterprise Resource Planing","custom_icon":"odoo.png"}], 
+
+	"repository": [{"url":"http://nightly.odoo.com/13.0/nightly/deb ./"}], 
+
+	"script": {"name":"/usr/share/zero-fp-informatica/zero-fp-informatica_script", "remove":true},
+
+	"zomando":"zero-fp-informatica",
+
+	"custom_icon_path":"/usr/share/zero-fp-administrativo/",
+
+	"selection_enabled":{"active":true,"all_selected":false}
+
+
+	}
