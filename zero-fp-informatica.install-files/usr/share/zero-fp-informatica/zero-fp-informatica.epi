@@ -2,9 +2,9 @@
 
 	"type":"apt",
 
-	"pkg_list": [{"name":"git","custom_name":"Version Control System","custom_icon":"git.png"},{"name":"git-buildpackage","custom_name":"Git Build Package build Debian packages from Git","custom_icon":"gitbpg.png"},{"name":"remmina","custom_name":"Remmina remote desktop client","custom_icon":"remmina.png"},{"name":"xmlcopyeditor","custom_name":"XML Copy Editor for validating XML","custom_icon":"xmlcopyeditor.png"},{"name":"pgadmin4","custom_name":"pgAdmin 4 platform for administration and development PostgreSQL","custom_icon":"pgadmin4.png"},{"name":"minicom","custom_name":"Minicom serial communication program","custom_icon":"minicom.png"},{"name":"bluegriffon","custom_name":"Bluegriffon Web Editor","custom_icon":"bluegriffon.png"}], 
+	"pkg_list": [{"name":"git","custom_name":"Git Version Control System","custom_icon":"git.png"},{"name":"git-buildpackage","custom_name":"Git Build Package to generate Debian packages","custom_icon":"gitbpg.png"},{"name":"remmina","custom_name":"Remmina remote desktop client","custom_icon":"remmina.png"},{"name":"xmlcopyeditor","custom_name":"XML Copy Editor for validating XML","custom_icon":"xmlcopyeditor.png"},{"name":"pgadmin4","custom_name":"pgAdmin 4 platform for administration and development PostgreSQL","custom_icon":"pgadmin4.png"},{"name":"minicom","custom_name":"Minicom serial communication program","custom_icon":"minicom.png"},{"name":"bluegriffon","custom_name":"Bluegriffon Web Editor","custom_icon":"bluegriffon.png"},{"name":"eclipse","custom_name":"Eclipse integrated development environment","custom_icon":"eclipse.png"},{"name":"atom","custom_name":"Atom Text Editor","custom_icon":"atom.png"}], 
 
-	"repository": [{"url":"deb http://ppa.launchpad.net/remmina-ppa-team/remmina-next/ubuntu bionic main"}], 
+	"repository": [{"url":"deb http://ppa.launchpad.net/remmina-ppa-team/remmina-next/ubuntu bionic main"},{"url":"deb https://packagecloud.io/AtomEditor/atom/any/ any main"}], 
 
 	"script": {"name":"/usr/share/zero-fp-informatica/zero-fp-informatica_script", "remove":true},
 
