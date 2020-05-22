@@ -9,10 +9,11 @@ Standards-Version: 4.1.2
 Package: zero-fp-administrativo
 Architecture: all
 Depends: zero-center,epi-gtk
-Description: llx edition studio 
+Description: Fp Administrative
 	Adding shortcut in zero-center to install some programs for Fp Administrative
+
 Package: zero-fp-informatica
 Architecture: all
 Depends: zero-center,epi-gtk
-Description: llx edition studio
+Description: Fp Computer programs
         Adding shortcut in zero-center to install some programs for Fp Computing
