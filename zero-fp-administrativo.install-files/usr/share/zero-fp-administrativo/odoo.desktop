@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Name=Odoo
+Name[es]=Odoo
+Name[ca_ES.UTF-8@valencia]=Odoo
+Name[ca_ES]=Odoo
+Name[ca]=Odoo
+Comment=Odoo ERP Software
+Comment[es]=Odoo ERP Software
+Comment[ca_ES.UTF-8@valencia]=Odoo ERP Software
+Comment[ca_ES]=Odoo ERP Software
+Comment[ca]=Odoo ERP Software
+Exec=odoo
+Terminal=false
+Icon=odoo
+Type=Application
+GenericName=odoo
+Categories=LliureX-Education;

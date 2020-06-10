@@ -6,34 +6,157 @@ shift
 
 PACKAGE_LIST=$@
 
+# START Define variables
+DESTDOWNLOAD="/var/cache/epi-downloads"
+KEME_DEB="keme-amd64.deb"
+KEME_URL="https://downloads.sourceforge.net/project/keme/KEME-Contabilidad/3.2.0.3/keme-3.2.0.3-Ubuntu-18.04-64bits.deb?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fkeme%2Ffiles%2FKEME-Contabilidad%2F3.2.0.3%2Fkeme-3.2.0.3-Ubuntu-18.04-64bits.deb%2Fdownload%3Fuse_mirror%3Dmaster%26r%3Dhttps%253A%252F%252Fwww.google.com%252F%26use_mirror%3Dmaster&ts=1591194005"
+
+# END Define Variables
+
 
 
 case $ACTION in
+
+	getStatus)
+			
+		#START KEME
+			if [[ " ${PACKAGE_LIST[*]} " == *" keme "* ]]; then
+				if dpkg -s keme-contabilidad >/dev/null 2>&1 ;then
+					echo 0
+				else
+					echo 1
+				fi
+			elif [[ " ${PACKAGE_LIST[*]} " == *" odoo "* ]]; then
+				if [ ! -z $(docker images -q postgres:10) ] ;then
+					if [ ! -z $(docker images -q odoo:latest) ] ; then
+						echo 0
+					else
+						echo 1
+					fi
+				else
+					echo 1
+				fi
+			else
+        		echo "Not found"
+      		fi
+		#END KEME
+	;;
+
+
+	download)
+			
+		#START KEME Script
+		if [[ " ${PACKAGE_LIST[*]} " == *" keme "* ]]; then
+			echo "Downloading KEME ... please wait"
+			cd ${DESTDOWNLOAD}
+			if [ -s ${DESTDOWNLOAD}"/"${KEME_DEB} ]
+			then
+				rm -f ${DESTDOWNLOAD}"/"${KEME_DEB}
+			fi
+			
+			wget -O ${KEME_DEB} ${KEME_URL}
+			
+			if ! [ -s ${DESTDOWNLOAD}"/"${KEME_DEB} ]
+			then	
+				echo "Error donwloading KEME project.... please contact with LliureX Team in www.lliurex.net"
+				exit 1
+			fi 
+		fi
+		#END KEME Script
+			
+	;;
+
+	preInstall)
+
+		#START KEME
+			if [[ " ${PACKAGE_LIST[*]} " == *" keme "* ]]; then
+				echo "****PreInstalling keme plugins... please wait****"
+				apt install gdebi-core -y
+				echo " * * Finished * * "
+			fi
+		#END KEME
+
+		#START ODOO
+			if [[ " ${PACKAGE_LIST[*]} " == *" odoo "* ]]; then
+				echo "****PreInstalling Docker files... please wait****"
+				if dpkg -s docker-ce docker-ce-cli containerd.io >/dev/null 2>&1 ;then
+					apt install apt-transport-https ca-certificates curl software-properties-common -y
+					if ! grep -q "download.docker.com" /etc/apt/sources.list; then
+						curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+						sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu (lsb_release -cs) stable"
+					fi
+					usermod -aG docker $USER
+					echo " * * Finished * * "
+				fi
+			fi
+		#END ODOO
+	;;
+
+	installPackage)
+
+		#START KEME
+			if [[ " ${PACKAGE_LIST[*]} " == *" keme "* ]]; then
+				echo "****Installing KEME Suite... please wait****"
+				gdebi ${DESTDOWNLOAD}"/"${KEME_DEB} -n
+				echo " * * Finished * * "
+			fi
+		#END KEME
+
+		#START ODOO
+			if [[ " ${PACKAGE_LIST[*]} " == *" odoo "* ]]; then
+				echo "****Installing Odoo 13 & Postgres dockers... please wait****"
+				docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db postgres:10
+				docker run -d -v /custom/conf/path:/etc/odoo -p 8069:8069 --name odoo --link db:db -t odoo
+				docker rm -f $(docker ps -a -q -f ancestor=odoo)
+				docker rm -f $(docker ps -a -q -f ancestor=postgres:10)
+				cp /usr/share/zero-fp-administrativo/odoo.desktop /usr/share/applications/
+				cp /usr/share/zero-fp-administrativo/odoo /usr/sbin/odoo
+				chmod +x /usr/sbin/odoo
+				echo " * * Finished * * "
+			fi
+		#END ODOO	
+			
+	;;
 
 	remove)
 
 		for ix in $PACKAGE_LIST	
 
 		do
+			#START KEME
+			if [[ " ${PACKAGE_LIST[*]} " == *" keme "* ]]; then
+				if dpkg -s keme-contabilidad >/dev/null 2>&1 ;then
+					echo "****Unstalling KEME Suite... please wait****"
+					apt-get remove -y keme-contabilidad
+					echo " * * Finished * * "
+				fi
+			#END KEME
+			#START ODOO
+			elif [[ " ${PACKAGE_LIST[*]} " == *" odoo "* ]]; then
+				echo "****Uninstalling Odoo 13 & Postgres dockers... please wait****"
+				docker rm -f $(docker ps -a -q -f ancestor=odoo)
+				docker rm -f $(docker ps -a -q -f ancestor=postgres:10)
+				docker rmi $(docker images -q odoo:latest)
+				docker rmi $(docker images -q postgres:10)
+				rm /usr/share/applications/odoo.desktop
+				rm /usr/sbin/odoo
+				echo " * * Finished * * "
+			#END ODOO	
+			else	
+				apt-get remove -y $ix
 
+				TEST=$( dpkg-query -s  $ix 2> /dev/null| grep Status | cut -d " " -f 4 )
 
+				if [ "$TEST" == 'installed' ];then
 
-			apt-get remove -y $ix
+					exit 1
 
-			TEST=$( dpkg-query -s  $ix 2> /dev/null| grep Status | cut -d " " -f 4 )
-
-			if [ "$TEST" == 'installed' ];then
-
-				exit 1
-
-			fi
-
-							
+				fi
+			fi				
 
 		done		
 
-	;;	
-
+	;;
 esac
 
 exit 0
