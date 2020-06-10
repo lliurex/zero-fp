@@ -89,6 +89,20 @@ case $ACTION in
 	;;
 
 	preInstall)
+
+		#START Pgpadmin
+			if [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4 "* ]]; then
+				echo "Repository Pgadmin....."
+				if ! [ -s "/etc/apt/sources.list.d/pgdg.list" ]; then
+					wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+ 					sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+ 					echo "Added to my repositories list"
+ 					#apt update
+ 					#echo "Updated......."
+ 				fi
+
+			fi
+		#END Pgpadmin
 		
 		#START Android Studio Script
 			if [[ " ${PACKAGE_LIST[*]} " == *" androidstudio "* ]]; then
@@ -118,6 +132,13 @@ case $ACTION in
 	;;
 
 	installPackage)
+
+		#START Pgpadmin
+			if [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4 "* ]]; then
+				LANG=C LANGUAGE=en DEBIAN_FRONTEND=kde apt install pgadmin4 pgadmin4-apache2 -y
+				echo " * * Finished * * "
+			fi
+		#END Pgpadmin
 		
 		#START Android Studio Script
 
