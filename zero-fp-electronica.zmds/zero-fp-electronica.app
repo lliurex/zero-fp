@@ -1,0 +1,17 @@
+Name=Fp Electronica
+Name[es]=Fp Electronica
+Name[en]=Fp Electronica
+Name[qcv]=Fp Electronica
+Name[ca_ES]=Fp Electronica
+Comment=Select programs to install included in LliureX Fp Electronic
+Comment[es]=Selecciona los programas para instalar incluidos en la preselección de LliureX Fp Electronica
+Comment[qcv]=Select programs to install included in LliureX Fp Electronic
+Comment[ca_ES]=Select programs to install included in LliureX Fp Electronic
+Icon=zero-fp-electronica
+Groups=sudo;admins;
+Category=Software
+ScriptPath=zero-fp-electronica.zmd
+Using=pkexec
+Service=False
+Modal=True
+Locks=zero-fp-electronica
