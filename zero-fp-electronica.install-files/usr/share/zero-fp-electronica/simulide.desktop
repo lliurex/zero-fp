@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Name=SimulIDE
+Name[es]=SimulIDE
+Name[ca_ES.UTF-8@valencia]=SimulIDE
+Name[ca_ES]=SimulIDE
+Name[ca]=SimulIDE
+Comment=SimulIDE real time electronic simulator
+Comment[es]=SimulIDE real time electronic simulator
+Comment[ca_ES.UTF-8@valencia]=SimulIDE real time electronic simulator
+Comment[ca_ES]=SimulIDE real time electronic simulator
+Comment[ca]=SimulIDE real time electronic simulator
+Exec=/opt/SimulIDE_0.3.12-SR8_Lin64/bin/simulide
+Terminal=false
+Icon=/usr/share/zero-fp-electronica/simulide.png
+Type=Application
+GenericName=simulide
+Categories=LliureX-Education;
