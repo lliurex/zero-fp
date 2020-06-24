@@ -62,7 +62,8 @@ case $ACTION in
 	installPackage)
 
 		#START kicad eda
-			if [[ " ${PACKAGE_LIST[*]} " == *" kikad "* ]]; then
+			if [[ " ${PACKAGE_LIST[*]} " == *" kicad "* ]]; then
+				echo " * * Start Installing kicad * * "
 				apt install --install-recommends kicad kicad-demos -y
 				apt install kikad-locale-es kikad-doc-es -y
 				echo " * * Installed kikad * * "
