@@ -96,6 +96,7 @@ case $ACTION in
 				if [ -d $SIMULIDE_DEST ]
 				then
 					rm -rf $SIMULIDE_DEST
+					rm "/usr/share/applications/simulide.desktop"
 				fi
 				echo " * * Finished * * "
 			#END SimulIDE
