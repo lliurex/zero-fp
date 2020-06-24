@@ -1,0 +1,252 @@
+#!/bin/bash
+
+ACTION="$1"
+
+shift
+
+PACKAGE_LIST=$@
+
+
+# START Define variables
+DESTDOWNLOAD="/var/cache/epi-downloads"
+ANDROID_STUDIO_URL="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/3.6.3.0/"
+ANDROID_FILE="android-studio-ide-192.6392135-linux.tar.gz"
+ANDROID_DEST="/opt"
+ATOM_DEB="atom-amd64.deb"
+ATOM_URL="https://atom.io/download/deb"
+export PATH=$PATH:/snap/bin
+# END Define Variables
+
+case $ACTION in
+
+	getStatus)
+			
+		#START Android Studio Script, INTELLIJ
+			if [[ " ${PACKAGE_LIST[*]} " == *" androidstudio "* ]]; then
+				if [ -d $ANDROID_DEST"/android-studio" ];then
+					echo 0
+				else
+					echo 1
+				fi
+			elif [[ " ${PACKAGE_LIST[*]} " == *" intellij "* ]]; then
+				if [[ $(snap list | grep "intellij") == *"intellij"* ]];then 
+					echo 0
+				else 
+					echo 1
+				fi
+			elif [[ " ${PACKAGE_LIST[*]} " == *" eclipse "* ]]; then
+				if [[ $(snap list | grep "eclipse") == *"eclipse"* ]];then 
+					echo 0
+				else 
+					echo 1
+				fi
+				#statements
+			else
+        		echo "Not found"
+      		fi
+		#END Android Studio Script, INTELLIJ
+	;;
+		
+	download)
+			
+		#START Android Studio Script
+			if [[ " ${PACKAGE_LIST[*]} " == *" androidstudio "* ]]; then
+				echo "Downloading......"
+				cd ${DESTDOWNLOAD}
+				if [ -s ${DESTDOWNLOAD}"/"${ANDROID_FILE} ]
+				then
+					rm -f ${DESTDOWNLOAD}"/"${ANDROID_FILE}
+				fi
+				
+				wget ${ANDROID_STUDIO_URL}${ANDROID_FILE}
+				
+				if ! [ -s ${DESTDOWNLOAD}"/"${ANDROID_FILE} ]
+				then	
+					exit 1
+				fi 
+			fi
+		#END Android Studio Script
+
+
+		#START Atom Script
+			if [[ " ${PACKAGE_LIST[*]} " == *" atom "* ]]; then
+				echo "Downloading ATOM ... please wait"
+				cd ${DESTDOWNLOAD}
+				if [ -s ${DESTDOWNLOAD}"/"${ATOM_DEB} ]
+				then
+					rm -f ${DESTDOWNLOAD}"/"${ATOM_DEB}
+				fi
+				
+				wget -O ${ATOM_DEB} ${ATOM_URL}
+				
+				if ! [ -s ${DESTDOWNLOAD}"/"${ATOM_DEB} ]
+				then	
+					exit 1
+				fi 
+			fi
+		#END Atom Script
+			
+	;;
+
+	preInstall)
+
+		#START Pgpadmin
+			if [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4 "* ]]; then
+				echo "Repository Pgadmin....."
+				if ! [ -s "/etc/apt/sources.list.d/pgdg.list" ]; then
+					wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+ 					sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+ 					echo "Added to my repositories list"
+ 					#apt update
+ 					#echo "Updated......."
+ 				fi
+
+			fi
+		#END Pgpadmin
+		
+		#START Android Studio Script
+			if [[ " ${PACKAGE_LIST[*]} " == *" androidstudio "* ]]; then
+				apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386 -y
+			fi
+		#END Android Studio Script
+
+		#START Intellij IDEA
+			if [[ " ${PACKAGE_LIST[*]} " == *" intellij "* ]]; then
+				apt-get install snapd snapd-xdg-open -y
+			fi
+		#END Intellij IDEA
+
+		#START Eclipse
+			if [[ " ${PACKAGE_LIST[*]} " == *" eclipse "* ]]; then
+				apt-get install default-jre -y
+			fi
+		#END Eclipse
+
+		#START Atom
+			if [[ " ${PACKAGE_LIST[*]} " == *" atom "* ]]; then
+				echo "****Installing atom plugins... please wait****"
+				apt install gdebi-core -y
+				echo " * * Finished * * "
+			fi
+		#END Atom
+	;;
+
+	installPackage)
+
+		#START Pgpadmin
+			if [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4 "* ]]; then
+				LANG=C LANGUAGE=en DEBIAN_FRONTEND=kde apt install pgadmin4 pgadmin4-apache2 -y
+				echo " * * Finished * * "
+			fi
+		#END Pgpadmin
+		
+		#START Android Studio Script
+
+			if [[ " ${PACKAGE_LIST[*]} " == *" androidstudio "* ]]; then
+				cd $DESTDOWNLOAD
+				echo "Installing androidstudio... please wait"
+				tar -xvf $ANDROID_FILE -C $ANDROID_DEST
+				if [ $? -eq 0 ]
+				then
+					cd $ANDROID_DEST"/android-studio/bin"
+					echo "Launching androidstudio"
+					./studio.sh &
+				else
+					rm -f $ANDROID_DEST"/android-studio/bin"
+					exit 1
+				fi
+				echo " * * Finished * * "
+			fi
+		#END Android Studio Script
+
+		#START Intellij IDEA
+			if [[ " ${PACKAGE_LIST[*]} " == *" intellij "* ]]; then
+				echo "Installing intellij-idea-community... please wait"
+				snap install intellij-idea-community --classic --edge
+				echo " * * Finished * * "
+			fi
+		#END Intellij IDEA	
+
+		#START Eclipse
+			if [[ " ${PACKAGE_LIST[*]} " == *" eclipse "* ]]; then
+				echo "Installing Eclipse... please wait"
+				snap install --classic eclipse
+				echo " * * Finished * * "
+			fi
+		#END Eclipse	
+
+		#START Atom
+			if [[ " ${PACKAGE_LIST[*]} " == *" atom "* ]]; then
+				echo "****Installing atom plugins... please wait****"
+				gdebi ${DESTDOWNLOAD}"/"${ATOM_DEB} -n
+				echo " * * Finished * * "
+			fi
+		#END Atom	
+			
+	;;	
+
+	postInstall)
+		#START Remmina
+			if [[ " ${PACKAGE_LIST[*]} " == *" remmina "* ]]; then
+				echo "Installing remmina plugins... please wait"
+				apt install remmina-plugin-rdp remmina-plugin-secret -y
+				echo " * * Finished * * "
+			fi
+		#END Remmina
+
+		
+		
+			
+	;;	
+
+	remove)
+
+		for ix in $PACKAGE_LIST	
+
+		do
+			#START Android Studio Script
+			if [[ " $ix " == *" androidstudio "* ]]; then
+				echo "Removing files from Android Studio..."
+				if [ -d $ANDROID_DEST"/android-studio/" ]
+				then
+					rm -rf $ANDROID_DEST"/android-studio/"
+				fi
+				echo " * * Finished * * "
+			#END Android Studio Script
+
+			#START Intellij IDEA
+			elif [[ " $ix " == *" intellij "* ]]; then
+				echo "Uninstalling intellij-idea-community... please wait"
+				snap remove intellij-idea-community
+				echo " * * Finished * * "
+			#END Intellij IDEA	
+
+			#START Eclipse
+			elif [[ " $ix " == *" eclipse "* ]]; then
+				echo "Uninstalling Eclipse... please wait"
+				snap remove eclipse
+				echo " * * Finished * * "
+			#END Eclipse
+
+			else
+				apt-get remove -y $ix
+
+				TEST=$( dpkg-query -s  $ix 2> /dev/null| grep Status | cut -d " " -f 4 )
+
+				if [ "$TEST" == 'installed' ];then
+
+					exit 1
+
+				fi
+				echo " * * Finished * * "
+			fi
+
+							
+
+		done		
+
+	;;	
+
+esac
+
+exit 0

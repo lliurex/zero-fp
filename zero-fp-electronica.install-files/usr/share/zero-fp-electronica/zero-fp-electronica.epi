@@ -1,0 +1,18 @@
+{
+
+	"type":"mix",
+
+	"pkg_list": [{"name":"qelectrotech","custom_name":"QElectroTech free electricam diagram.","custom_icon":"qelectrotech.png","type":"apt"], 
+
+	"repository": [{"url":"deb http://ppa.launchpad.net/scorpio/qelectrotech-dev/ubuntu bionic main"}], 
+
+	"script": {"name":"/usr/share/zero-fp-informatica/zero-fp-electronica_script", "remove":true,"download":true,"getStatus":true},
+
+	"zomando":"zero-fp-electronica",
+
+	"custom_icon_path":"/usr/share/zero-fp-electronica/",
+
+	"selection_enabled":{"active":true,"all_selected":false}
+
+
+	}
