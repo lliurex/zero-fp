@@ -2,11 +2,11 @@
 
 	"type":"mix",
 
-	"pkg_list": [{"name":"qelectrotech","custom_name":"QElectroTech free electricam diagram.","custom_icon":"qelectrotech.png","type":"apt"], 
+	"pkg_list": [{"name":"fritzing","custom_name":"Fritzing creator Kit.","custom_icon":"fritzing.png","type":"apt"},{"name":"kicad","custom_name":"KiCad EDA, Design automation Suite","custom_icon":"kicad.png","type":"file"},{"name":"qelectrotech","custom_name":"QElectroTech free electricam diagram.","custom_icon":"qelectrotech.png","type":"apt"},{"name":"qucs","custom_name":"Quite Universal Circuit Simulator.","custom_icon":"qucs.png","type":"file"},{"name":"qucs-s","custom_name":"QUCS with Spice simulation kernel support.","custom_icon":"qucs-s.png","type":"file"},{"name":"simulide","custom_name":"SimulIDE, Real time electronic circuit simulator.","custom_icon":"simulide.png","type":"file"}], 
 
-	"repository": [{"url":"deb http://ppa.launchpad.net/scorpio/qelectrotech-dev/ubuntu bionic main"}], 
+	"repository": [{"url":"deb http://ppa.launchpad.net/scorpio/qelectrotech-dev/ubuntu bionic main"},{"url":"deb http://ppa.launchpad.net/js-reynaud/kicad-5.1/ubuntu bionic main"}], 
 
-	"script": {"name":"/usr/share/zero-fp-informatica/zero-fp-electronica_script", "remove":true,"download":true,"getStatus":true},
+	"script": {"name":"/usr/share/zero-fp-electronica/zero-fp-electronica_script", "remove":true,"download":true,"getStatus":true},
 
 	"zomando":"zero-fp-electronica",
 

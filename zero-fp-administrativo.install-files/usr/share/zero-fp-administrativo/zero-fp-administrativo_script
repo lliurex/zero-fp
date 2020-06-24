@@ -124,7 +124,7 @@ case $ACTION in
 
 		do
 			#START KEME
-			if [[ " ${PACKAGE_LIST[*]} " == *" keme "* ]]; then
+			if [[ " $ix " == *" keme "* ]]; then
 				if dpkg -s keme-contabilidad >/dev/null 2>&1 ;then
 					echo "****Unstalling KEME Suite... please wait****"
 					apt-get remove -y keme-contabilidad
@@ -132,7 +132,7 @@ case $ACTION in
 				fi
 			#END KEME
 			#START ODOO
-			elif [[ " ${PACKAGE_LIST[*]} " == *" odoo "* ]]; then
+			elif [[ " $ix " == *" odoo "* ]]; then
 				echo "****Uninstalling Odoo 13 & Postgres dockers... please wait****"
 				docker rm -f $(docker ps -a -q -f ancestor=odoo)
 				docker rm -f $(docker ps -a -q -f ancestor=postgres:10)
