@@ -11,6 +11,8 @@ PACKAGE_LIST=$@
 DESTDOWNLOAD="/var/cache/epi-downloads"
 SIMULIDE_URL="https://mailfence.com/pub/docs/santigoro/web/SimulIDE_0.3.12/"
 SIMULIDE_FILE="SimulIDE_0.3.12-SR8_Lin64.tar.gz"
+SIMULIDE_DEST="/opt/SimulIDE_0.3.12-SR8_Lin64"
+INSTALL_PROGRAMS="/opt"
 # END Define Variables
 
 case $ACTION in
@@ -19,7 +21,7 @@ case $ACTION in
 			
 		#START SimulIDE
 			if [[ " ${PACKAGE_LIST[*]} " == *" simulide "* ]]; then
-				if [ -d "/share/simulide" ];then
+				if [ -d $SIMULIDE_DEST ];then
 					echo 0
 				else
 					echo 1
@@ -70,7 +72,8 @@ case $ACTION in
 			elif [[ " ${PACKAGE_LIST[*]} " == *" simulide "* ]]; then
 				cd $DESTDOWNLOAD
 				echo "Installing simulide... please wait"
-				tar -xvf $SIMULIDE_FILE -C /
+				tar -xvf $SIMULIDE_FILE -C $INSTALL_PROGRAMS
+				cp "/usr/share/zero-fp-electronica/simulide.desktop" "/usr/share/applications/"
 				echo " * * Installed simulide * * "
 			
 			fi
@@ -90,10 +93,9 @@ case $ACTION in
 			#START SimulIDE
 			if [[ " $ix " == *" simulide "* ]]; then
 				echo "Removing files from SimulIDE..."
-				if [ -d "/share/simulide" ]
+				if [ -d $SIMULIDE_DEST ]
 				then
-					rm -rf "/bin/simulide"
-					rm -rf "/share/simulide"
+					rm -rf $SIMULIDE_DEST
 				fi
 				echo " * * Finished * * "
 			#END SimulIDE
