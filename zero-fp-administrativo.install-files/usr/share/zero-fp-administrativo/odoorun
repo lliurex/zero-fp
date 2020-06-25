@@ -1,0 +1,273 @@
+#!/bin/bash
+set -e
+#set -x
+
+COMPOSE_FILE_PATH=/usr/share/zero-fp-administrativo/docker-compose.yml
+
+# MAIN_CONFIG_DIR="$HOME/.odoo"
+# DBDIR="$MAIN_CONFIG_DIR/dbdata"
+# DATADIR="MAIN_CONFIG_DIR/webdata"
+# ADDONSDIR="MAIN_CONFIG_DIR/addons"
+# CONFDIR="MAIN_CONFIG_DIR/conf"
+
+SRC="${BASH_SOURCE[0]}"
+
+ACTION=$1
+
+if [ -n "$PKEXEC_UID" ]; then
+    IDUSER=$PKEXEC_UID
+    USER=$(getent passwd $IDUSER|cut -d: -f1)
+    IDGRP=$(id -g $USER)
+    HOME_USER=$(getent passwd $IDUSER|cut -d: -f6)
+else
+    IDUSER="$(id -u)"
+    IDGRP="$(id -g)"
+    USER="$(whoami)"
+    HOME_USER="$HOME"
+fi
+
+check_run(){
+    local tgt=$1
+
+    if [ -z "$tgt" ]; then
+	return 1
+    fi
+    DEBUG=0
+    if [ -n "$(set -o |grep xtrace|grep on)" ];then
+	DEBUG=1
+    fi
+    if [ $DEBUG -eq 1 ]; then
+	if $tgt ; then
+	    return 0
+	else
+	    return 1
+	fi
+    else
+	if $tgt 2>/dev/null >/dev/null; then
+	    return 0
+	else
+	    return 1
+	fi
+    fi
+}
+
+check_installed(){
+    local tgt="$1"
+    if [ -z "$tgt" ];then
+	echo "Empty parameter calling check_installed"
+	return 1
+    fi
+    if [ -f "/usr/bin/${tgt}" ]; then
+	# echo "$tgt installed"
+	return 0
+    fi
+    echo "'$tgt' not available"
+    return 1
+}
+
+check_dir(){
+    local LDIR="$1"
+    if [ ! -d "$LDIR" ]; then
+	if ! mkdir -p "$LDIR";then
+	    echo "Unable to create $LDIR"
+	    exit 1
+	fi
+    fi
+    export RET="$(readlink -f $LDIR)"
+}
+
+setup_dirs(){
+    MAIN_CONFIG_DIR=${MAIN_CONFIG_DIR:="$HOME_USER/.odoo"}
+    mkdir -p "$MAIN_CONFIG_DIR"
+    DATADIR=${DATADIR:-"$MAIN_CONFIG_DIR/webdata"}
+    DBDIR=${DBDIR:-"$MAIN_CONFIG_DIR/dbdata"}
+    ADDONSDIR=${ADDONSDIR:="$MAIN_CONFIG_DIR/addons"}
+    CONFDIR=${CONFDIR:="$MAIN_CONFIG_DIR/conf"}
+    check_dir $DATADIR
+    DATADIR=$RET
+    check_dir $DBDIR
+    DBDIR=$RET
+    check_dir $ADDONSDIR
+    ADDONSDIR=$RET
+    check_dir $CONFDIR
+    CONFDIR=$RET
+    export DATADIR DBDIR ADDONSDIR CONFDIR
+}
+
+do_checks(){
+    setup_dirs
+    export_vars
+    check_installed docker
+    check_installed docker-compose
+    if check_run "docker ps"; then
+	export DOCKERCMD="docker"
+    else
+	if check_run "pkexec $SRC $ACTION"; then
+	    exit $?
+	else
+	    if check_run "sudo docker ps"; then
+		export DOCKERCMD="sudo -E docker"
+	    else
+		echo "Unable to run docker"
+		exit 1
+	    fi
+	fi
+    fi
+    if [ ! -f "$COMPOSE_FILE_PATH" ]; then
+	echo "Compose file unavailable, unable to continue"
+	exit 1
+    fi 
+    if check_run "docker-compose -f $COMPOSE_FILE_PATH images"; then
+	export COMPOSECMD="docker-compose -f $COMPOSE_FILE_PATH"
+    else
+	if check_run "pkexec $SRC $ACTION"; then
+	    exit $?
+	else
+	    if check_run "sudo docker-compose -f $COMPOSE_FILE_PATH images"; then
+		export COMPOSECMD="sudo -E docker-compose -f $COMPOSE_FILE_PATH"
+	    else
+		echo "Unable to run docker-compose"
+	        exit 1
+	    fi
+	fi
+    fi
+}
+
+start_odoo(){
+    $COMPOSECMD start 
+}
+
+stop_odoo(){
+    $COMPOSECMD stop
+}
+
+remove_odoo(){
+    $COMPOSECMD down 2>/dev/null 
+}
+
+export_vars(){
+    export ODOO_WEB_DATA_DIR=$DATADIR
+    export ODOO_DB_DATA_DIR=$DBDIR
+    export ODOO_CONF_DIR=$CONFDIR
+    export ODOO_ADDONS_DIR=$ADDONSDIR
+    export USER_ID=$IDUSER
+    export GROUP_ID=$IDGRP
+}
+ret_vars(){
+    RET="ODOO_WEB_DATA_DIR=$DATADIR ODOO_DB_DATA_DIR=$DBDIR ODOO_CONF_DIR=$CONFDIR ODOO_ADDONS_DIR=$ADDONSDIR USER_ID=$IDUSER IDUSER=$IDUSER GROUP_ID=$IDGRP IDGRP=$IDGRP HOME=$HOME_USER HOME_USER=$HOME_USER"
+}
+
+create_odoo(){
+    $COMPOSECMD up -d
+}
+
+instances_created(){
+    local INSTANCES="$($COMPOSECMD ps -q)"
+    if [ -z "$INSTANCES" ]; then
+	return 1
+    else
+	return 0
+    fi
+}
+
+list_odoo_volumes(){
+    VOLS=$($DOCKERCMD volume ls -q|grep odoo||true)
+    RET=${VOLS:-"empty"}
+}
+
+clean_odoo(){
+    remove_odoo
+    list_odoo_volumes
+    ODO_VOLUMES="$RET"
+    if [ -n "$ODO_VOLUMES" -a "x$ODO_VOLUMES" != "xempty" ];then
+	for volume in $ODO_VOLUMES; do
+	    clean_volume $volume
+	done
+    fi
+}
+
+clean_volume(){
+    local vol="$1"
+    if [ -n "$vol" ]; then
+	echo "Cleaning docker volume $vol"
+	$DOCKERCMD volume rm $vol
+    fi
+}
+
+remove_dirs(){
+    if [ -d "$MAIN_CONFIG_DIR" ]; then
+	echo "Removing $MAIN_CONFIG_DIR"
+	rm -rf "$MAIN_CONFIG_DIR"
+    fi
+}
+
+initialize_odoo(){
+    /usr/bin/curl -s -d "master_pwd=admin&name=odoo_demo&login=administrador%40odoo&password=odoo&phone=&lang=es_ES&country_code=es&demo=1" -X POST http://localhost:8069/web/database/create > /dev/null
+}
+
+do_checks
+
+case $ACTION in
+
+    start)
+	echo "Start odoo";
+	if instances_created; then
+	    start_odoo
+	else
+	    create_odoo
+	fi
+    ;;
+
+    stop)
+	echo "Stop odoo";
+	stop_odoo
+    ;;
+
+    restart)
+	echo "Restart odoo";
+	stop_odoo
+	start_odoo
+    ;;
+
+    remove)
+	echo "Removing odoo";
+	remove_odoo
+    ;;
+
+    create)
+	echo "Creating odoo";
+	if instances_created; then
+	    start_odoo
+	else
+	    create_odoo
+	fi
+    ;;
+    
+    clean)
+	echo "Cleaning odoo";
+	clean_odoo
+    ;;
+
+    reallyclean)
+	echo "Full cleaning odoo";
+	clean_odoo
+	remove_dirs
+    ;;
+
+    reconfigure)
+	echo "Reconfigure";
+    ;;
+
+    initialize)
+	echo "Initializing"
+	initialize_odoo
+    ;;
+
+    *)
+	echo "Not implemented";
+    ;;
+
+esac
+
+echo "End"
+exit 0

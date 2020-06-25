@@ -1,0 +1,61 @@
+version: '2'
+services:
+  web:
+    image: odoo:latest
+    user: "0:0"
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    environment:
+    - HOST=db
+    - PORT=5432
+    - USER=odoo
+    - PASSWORD=odoo
+    - USER_ID=${USER_ID}
+    - GROUP_ID=${GROUP_ID}
+    entrypoint: /custom-entrypoint.sh
+    volumes:
+      - ./custom-entrypoint.sh:/custom-entrypoint.sh:ro
+      - odoo-web-data:/var/lib/odoo
+      - odoo-conf:/etc/odoo
+      - odoo-addons:/mnt/extra-addons
+  db:
+    image: postgres:10
+    user: "0:0"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - USER_ID=${USER_ID}
+      - GROUP_ID=${GROUP_ID}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    entrypoint: /custom-entrypoint.sh
+    volumes:
+      - ./custom-entrypoint.sh:/custom-entrypoint.sh:ro
+      - odoo-db-data:/var/lib/postgresql/data
+volumes:
+  odoo-web-data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: bind
+      device: ${ODOO_WEB_DATA_DIR}
+  odoo-db-data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: bind
+      device: ${ODOO_DB_DATA_DIR}
+  odoo-conf:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: bind
+      device: ${ODOO_CONF_DIR}
+  odoo-addons:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: bind
+      device: ${ODOO_ADDONS_DIR}
