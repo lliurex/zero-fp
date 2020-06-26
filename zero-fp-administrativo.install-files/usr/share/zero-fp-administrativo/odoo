@@ -1,4 +1,4 @@
 #!/bin/bash
-docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db postgres:10
-docker run -d -v /custom/conf/path:/etc/odoo -p 8069:8069 --name odoo --link db:db -t odoo
-firefox 'http://localhost:8069/web'
+#docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db postgres:10
+#docker run -d -v /custom/conf/path:/etc/odoo -p 8069:8069 --name odoo --link db:db -t odoo
+#firefox 'http://localhost:8069/web'
