@@ -1,3 +1,9 @@
+zero-fp (0.2) bionic; urgency=medium
+
+  * New Banners 
+
+ -- Daniel Duran <daduve@gmail.com>  Fri, 03 Jul 2020 20:37:03 +0200
+
 zero-fp (0.1) bionic; urgency=medium
 
   * Initial release.
