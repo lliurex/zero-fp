@@ -1,8 +1,8 @@
 Name=Fp Computing
 Name[es]=Fp Informatica
 Name[en]=Fp Informatica
-Name[qcv]=Fp Informatica
-Name[ca_ES]=Fp Informatica
+Name[qcv]=Fp Informàtica
+Name[ca_ES]=Fp Informàtica
 Comment=Select programs to install included in LliureX Fp Computing
 Comment[es]=Selecciona los programas para instalar incluidos en la preselección de LliureX Fp Informatica
 Comment[qcv]=Select programs to install included in LliureX Fp Computing
