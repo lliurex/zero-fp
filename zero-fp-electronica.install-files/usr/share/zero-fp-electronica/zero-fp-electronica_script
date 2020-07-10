@@ -92,7 +92,7 @@ case $ACTION in
 
 		do
 			#START kicad eda
-			if [[ " ${PACKAGE_LIST[*]} " == *" kicad "* ]]; then
+			if [[ " $ix " == *" kicad "* ]]; then
 				echo "Removing files from Kikad..."
 				apt remove kicad kicad-demos
 				apt remove kicad-doc-en kicad-footprints kicad-libraries kicad-packages3d kicad-symbols kicad-templates
@@ -110,12 +110,6 @@ case $ACTION in
 				echo " * * Finished * * "
 			#END SimulIDE
 
-			#START Intellij IDEA
-			elif [[ " $ix " == *" intellij "* ]]; then
-				echo "Uninstalling intellij-idea-community... please wait"
-				snap remove intellij-idea-community
-				echo " * * Finished * * "
-			#END Intellij IDEA	
 
 			else
 				apt-get remove -y $ix
