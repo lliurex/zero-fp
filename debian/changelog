@@ -1,3 +1,9 @@
+zero-fp (0.4) bionic; urgency=medium
+
+  * Fix bug in EPI electronica 
+
+ -- Daniel Duran <daduve@gmail.com>  Sat, 11 Jul 2020 23:02:58 +0200
+
 zero-fp (0.3) bionic; urgency=medium
 
   * Fix bug in electronica script 
