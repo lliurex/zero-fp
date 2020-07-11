@@ -94,8 +94,8 @@ case $ACTION in
 			#START kicad eda
 			if [[ " $ix " == *" kicad "* ]]; then
 				echo "Removing files from Kikad..."
-				apt remove kicad kicad-demos
-				apt remove kicad-doc-en kicad-footprints kicad-libraries kicad-packages3d kicad-symbols kicad-templates
+				apt remove kicad kicad-demos -y
+				apt remove kicad-doc-en kicad-footprints kicad-libraries kicad-packages3d kicad-symbols kicad-templates -y
 				echo " * * Finished Kikad Uninstall * *  "
 			#END kikad eda
 
