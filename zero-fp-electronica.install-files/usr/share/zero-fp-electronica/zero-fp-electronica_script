@@ -100,7 +100,7 @@ case $ACTION in
 			#END kikad eda
 
 			#START SimulIDE
-			if [[ " $ix " == *" simulide "* ]]; then
+			elif [[ " $ix " == *" simulide "* ]]; then
 				echo "Removing files from SimulIDE..."
 				if [ -d $SIMULIDE_DEST ]
 				then
