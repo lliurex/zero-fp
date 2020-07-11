@@ -1,3 +1,9 @@
+zero-fp (0.6) bionic; urgency=medium
+
+  * Upgrade to baikonur 
+
+ -- Daniel Duran <daduve@gmail.com>  Sat, 11 Jul 2020 23:28:59 +0200
+
 zero-fp (0.5) bionic; urgency=medium
 
   * Adding force yes in remove script eletronica 
