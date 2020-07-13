@@ -1,3 +1,9 @@
+zero-fp (0.7) bionic; urgency=medium
+
+  * Fix bug in kicad script 
+
+ -- Daniel Duran <daduve@gmail.com>  Mon, 13 Jul 2020 09:07:27 +0200
+
 zero-fp (0.6) bionic; urgency=medium
 
   * Upgrade to baikonur 
