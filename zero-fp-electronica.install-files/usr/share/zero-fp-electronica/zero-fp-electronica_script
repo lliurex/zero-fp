@@ -65,9 +65,9 @@ case $ACTION in
 			if [[ " ${PACKAGE_LIST[*]} " == *" kicad "* ]]; then
 				echo " * * Start Installing kicad * * "
 				apt install --install-recommends kicad kicad-demos -y
-				apt install kikad-locale-es kikad-doc-es -y
-				echo " * * Installed kikad * * "
-		#END kikad eda
+				apt install kicad-locale-es kicad-doc-es -y
+				echo " * * Installed kicad * * "
+		#END kicad eda
 
 		#START SimulIDE
 			elif [[ " ${PACKAGE_LIST[*]} " == *" simulide "* ]]; then
@@ -94,7 +94,7 @@ case $ACTION in
 			#START kicad eda
 			if [[ " $ix " == *" kicad "* ]]; then
 				echo "Removing files from Kikad..."
-				apt remove kicad kicad-demos -y
+				apt remove kicad kicad-demos kicad-locale-es -y
 				apt remove kicad-doc-en kicad-footprints kicad-libraries kicad-packages3d kicad-symbols kicad-templates -y
 				echo " * * Finished Kikad Uninstall * *  "
 			#END kikad eda
