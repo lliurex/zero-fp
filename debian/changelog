@@ -1,3 +1,9 @@
+zero-fp (0.9) bionic; urgency=medium
+
+  * Upgrade dependences for gitkraken 
+
+ -- Daniel Duran <daduve@gmail.com>  Mon, 27 Jul 2020 17:41:05 +0200
+
 zero-fp (0.8) bionic; urgency=medium
 
   * Adding ubuntu repos to Informatica EPI 
