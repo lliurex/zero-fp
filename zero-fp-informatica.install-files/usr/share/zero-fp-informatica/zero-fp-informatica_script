@@ -129,6 +129,16 @@ case $ACTION in
 				echo " * * Finished * * "
 			fi
 		#END Atom
+
+		#START gitkraken
+			if [[ " ${PACKAGE_LIST[*]} " == *" gitkraken "* ]]; then
+				echo "Installing gitkraken dependences... please wait"
+				apt update
+				apt install gconf2 gvfs-bin -y
+				apt install -f -y
+				echo " * * Finished * * "
+			fi
+		#END gitkraken
 	;;
 
 	installPackage)
