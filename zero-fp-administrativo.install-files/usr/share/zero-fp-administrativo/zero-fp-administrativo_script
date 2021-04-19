@@ -77,6 +77,8 @@ case $ACTION in
 
 		#START KEME
 			if [[ " ${PACKAGE_LIST[*]} " == *" keme "* ]]; then
+				echo "****Installing KEME dependencies... please wait****"
+				apt install libqt5sql5-psql -y
 				echo "****Installing KEME Suite... please wait****"
 				gdebi ${DESTDOWNLOAD}"/"${KEME_DEB} -n
 				echo " * * Finished * * "
