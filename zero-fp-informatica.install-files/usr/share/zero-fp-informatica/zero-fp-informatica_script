@@ -144,8 +144,12 @@ case $ACTION in
 	installPackage)
 
 		#START Pgpadmin
-			if [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4 "* ]]; then
-				LANG=C LANGUAGE=en DEBIAN_FRONTEND=kde apt install pgadmin4 pgadmin4-apache2 -y
+			if [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4-web "* ]]; then
+				LANG=C LANGUAGE=en DEBIAN_FRONTEND=kde apt install pgadmin4-web -y
+				echo " **************************************************"
+				echo " * configure with: /usr/pgadmin4/bin/setup-web.sh *"
+				echo " * access with: http://<YOUR_HOSTNAME>/pgadmin4/  *"
+				echo " **************************************************"
 				echo " * * Finished * * "
 			fi
 		#END Pgpadmin
