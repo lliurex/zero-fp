@@ -106,6 +106,10 @@ case $ACTION in
 				chmod +x /usr/bin/odoorun
 				systemctl restart polkit
 				echo " * * Finished * * "
+				echo " **********************************************************"
+				echo " * ODOO INSTALLED: MANAGE WITH COMMANDLINE TOOL "odoorun"   *"
+				echo " **********************************************************"
+
 			fi
 		#END ODOO	
 			
@@ -140,7 +144,7 @@ case $ACTION in
 				    docker rmi "${imgs}"
 				fi
 				imgs="$(docker images -q postgres:10)"
-				if [ -n "${imgs}"];then
+				if [ -n "${imgs}" ];then
 				    docker rmi "${imgs}"
 				fi
 				rm -f /usr/share/applications/odoo.desktop
