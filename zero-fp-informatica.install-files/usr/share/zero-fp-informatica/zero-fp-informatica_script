@@ -139,6 +139,18 @@ case $ACTION in
 				echo " * * Finished * * "
 			fi
 		#END gitkraken
+		
+		#START packettracer
+			if [[ " ${PACKAGE_LIST[*]} " == *" packettracer "* ]]; then
+				echo "Installing packettracer dependences... please wait"
+				apt update
+				apt install libxcb-xinerama0-dev libgl1-mesa-glx -y
+				apt install -f -y
+				echo " * * Finished * * "
+			fi
+		#END gitkraken
+		
+		
 	;;
 
 	installPackage)
