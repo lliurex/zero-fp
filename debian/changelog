@@ -1,3 +1,9 @@
+zero-fp (0.9) focal; urgency=medium
+
+  * Initial focal packaging
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Mon, 19 Apr 2021 14:46:34 +0200
+
 zero-fp (0.9) bionic; urgency=medium
 
   * Upgrade dependences for gitkraken 
