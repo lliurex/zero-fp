@@ -1,3 +1,9 @@
+zero-fp (0.9.2) focal; urgency=medium
+
+  * Add Xournalpp on administrativo
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Wed, 21 Apr 2021 13:45:47 +0200
+
 zero-fp (0.9.1) focal; urgency=medium
 
   * Remove Bluegriffon and include vscode

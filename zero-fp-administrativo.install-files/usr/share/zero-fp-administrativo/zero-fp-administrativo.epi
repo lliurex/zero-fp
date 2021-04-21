@@ -1,9 +1,10 @@
 {
 	"type":"mix",
-	"pkg_list": [{"name":"klavaro","custom_name":"Klavaro Touch typing tutor","custom_icon":"klavaro.png","type":"apt"},{"name":"keme","custom_name":"Keme Contabilidad","custom_icon":"keme.png","type":"file"},{"name":"odoo","custom_name":"Odoo 13 Enterprise Resource Planing","custom_icon":"odoo.png","type":"file"}], 
+	"pkg_list": [{"name":"klavaro","custom_name":"Klavaro Touch typing tutor","custom_icon":"klavaro.png","type":"apt"},{"name":"keme","custom_name":"Keme Contabilidad","custom_icon":"keme.png","type":"file"},{"name":"odoo","custom_name":"Odoo 13 Enterprise Resource Planing","custom_icon":"odoo.png","type":"file"},{"name":"xournalpp","custom_name":"Xournal++ hand note-taking","custom_icon":"xournalpp.png","type":"apt"}], 
 	"script": {"name":"/usr/share/zero-fp-administrativo/zero-fp-administrativo_script", "remove":true,"download":true,"getStatus":true,"installPackage":true,"preInstall":true,"postInstall":true},
+	"repository": [{"url":"deb http://ppa.launchpad.net/apandada1/xournalpp-stable/ubuntu focal main"}],
 	"zomando":"zero-fp-administrativo",
 	"custom_icon_path":"/usr/share/zero-fp-administrativo/",
 	"depends": "/usr/share/zero-lliurex-docker/docker.epi",
 	"selection_enabled":{"active":true,"all_selected":false}
-	}
+}

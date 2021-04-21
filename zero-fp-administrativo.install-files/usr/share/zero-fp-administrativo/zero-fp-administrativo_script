@@ -27,7 +27,7 @@ case $ACTION in
 					echo 1
 				fi
 			elif [[ " ${PACKAGE_LIST[*]} " == *" odoo "* ]]; then
-				if [ -n "$(docker images -q postgres:10)" -a -n $(docker images -q odoo:latest) -a -f "/usr/bin/odoorun" -a -f "/usr/share/polkit-1/actions/net.lliurex.odoorun.policy"  ] ;then
+				if [ -n "$(docker images -q postgres:10)" -a -n "$(docker images -q odoo:latest)" -a -f "/usr/bin/odoorun" -a -f "/usr/share/polkit-1/actions/net.lliurex.odoorun.policy"  ]; then
 				    echo 0
 				else
 				    echo 1
