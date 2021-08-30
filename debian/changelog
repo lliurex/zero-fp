@@ -1,3 +1,9 @@
+zero-fp (0.9.3.1) focal; urgency=medium
+
+  * Fix getStatus check if docker not installed
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Mon, 30 Aug 2021 12:25:49 +0200
+
 zero-fp (0.9.3) focal; urgency=medium
 
   * Remove Xournalpp from administrativo
