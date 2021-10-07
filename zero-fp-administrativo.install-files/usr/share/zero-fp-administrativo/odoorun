@@ -205,6 +205,41 @@ initialize_odoo(){
     /usr/bin/curl -s -d "master_pwd=admin&name=odoo_demo&login=administrador%40odoo&password=odoo&phone=&lang=es_ES&country_code=es&demo=1" -X POST http://localhost:8069/web/database/create > /dev/null
 }
 
+
+help(){
+    echo " odoorun: Manages Odoo instance"
+    echo " "
+    echo " Usage:"
+    echo "      [sudo] odoorun [ACTION]"
+    echo " "
+    echo " Actions:"
+    echo "      start : start previously created Odoo server services instance"
+    echo "      stop : stop Odoo server services instance"
+    echo "      restart : restart Odoo server services instance"
+    echo "      create : create and start new Odoo server services instance"
+    echo "      remove : stop and destroy existing Odoo server services instance"
+    echo "      clean : stop and destroy existing Odoo server services instance with all volume data"
+    echo "      reallyclean : make clean action and remove personal user data into his home"
+    echo "      reconfigure : (Not implemented)"
+    echo "      initialize : Initialize instance with demo data and user='administrador', password='odoo' and master password='admin'"
+    echo " Examples:"
+    echo "      First initialization:"
+    echo "            sudo odoorun create"
+    echo "            sudo odoorun initialize"
+    echo "      Remove all:"
+    echo "            sudo odoorun remove"
+    echo "            sudo odoorun reallyclean"
+    echo "      Using after initialization:"
+    echo "            Use web browser to http://localhost:8069 and login with 'administrador@odoo', password='odoo' and master password='admin'"
+    echo " "
+    echo "      Note: If initialization wasn't done you must initialize first manually! Use web browser to http://localhost:8069/ and configure manually"
+}
+
+if [ -z "$ACTION" ];then
+    help
+    exit 0
+fi
+
 do_checks
 
 case $ACTION in
@@ -261,10 +296,11 @@ case $ACTION in
     initialize)
 	echo "Initializing"
 	initialize_odoo
+	echo "Use web browser to http://localhost:8069 and login with 'administrador@odoo', password='odoo' and master password='admin'"
     ;;
 
     *)
-	echo "Not implemented";
+	help
     ;;
 
 esac

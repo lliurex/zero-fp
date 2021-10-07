@@ -14,10 +14,6 @@ ANDROID_FILE="android-studio-ide-192.6392135-linux.tar.gz"
 ANDROID_DEST="/opt"
 ATOM_DEB="atom-amd64.deb"
 ATOM_URL="https://atom.io/download/deb"
-NETB_FILE="Apache-NetBeans-12.0-bin-linux-x64.sh"
-NETB_URL="https://downloads.apache.org/netbeans/netbeans/12.0/"
-NETB_BIN="/usr/local/netbeans-12.0/netbeans/bin/netbeans"
-NETB_BIN_UNINSTALL="/usr/local/netbeans-12.0/uninstall.sh"
 export PATH=$PATH:/snap/bin
 # END Define Variables
 
@@ -30,12 +26,6 @@ case $ACTION in
 				if [ -d $ANDROID_DEST"/android-studio" ];then
 					echo 0
 				else
-					echo 1
-				fi
-			elif [[ " ${PACKAGE_LIST[*]} " == *" netbeans "* ]]; then
-				if [ -f $NETB_BIN ];then 
-					echo 0
-				else 
 					echo 1
 				fi
 			elif [[ " ${PACKAGE_LIST[*]} " == *" intellij "* ]]; then
@@ -71,24 +61,6 @@ case $ACTION in
 				wget ${ANDROID_STUDIO_URL}${ANDROID_FILE}
 				
 				if ! [ -s ${DESTDOWNLOAD}"/"${ANDROID_FILE} ]
-				then	
-					exit 1
-				fi 
-			fi
-		#END Android Studio Script
-
-		#START Apache Netbeans Ide Script
-			if [[ " ${PACKAGE_LIST[*]} " == *" netbeans "* ]]; then
-				echo "Downloading......"
-				cd ${DESTDOWNLOAD}
-				if [ -s ${DESTDOWNLOAD}"/"${NETB_FILE} ]
-				then
-					rm -f ${DESTDOWNLOAD}"/"${NETB_FILE}
-				fi
-				
-				wget ${NETB_URL}${NETB_FILE}
-				
-				if ! [ -s ${DESTDOWNLOAD}"/"${NETB_FILE} ]
 				then	
 					exit 1
 				fi 
@@ -138,12 +110,6 @@ case $ACTION in
 			fi
 		#END Android Studio Script
 
-		#START Apache Netbeans IDE Script
-			if [[ " ${PACKAGE_LIST[*]} " == *" netbeans "* ]]; then
-				apt-get install openjdk-11-jdk-headless -y
-			fi
-		#END Apache Netbeans IDE Script
-
 		#START Intellij IDEA
 			if [[ " ${PACKAGE_LIST[*]} " == *" intellij "* ]]; then
 				apt-get install snapd snapd-xdg-open -y
@@ -173,13 +139,29 @@ case $ACTION in
 				echo " * * Finished * * "
 			fi
 		#END gitkraken
+		
+		#START packettracer
+			if [[ " ${PACKAGE_LIST[*]} " == *" packettracer "* ]]; then
+				echo "Installing packettracer dependences... please wait"
+				apt update
+				apt install libxcb-xinerama0-dev libgl1-mesa-glx -y
+				apt install -f -y
+				echo " * * Finished * * "
+			fi
+		#END gitkraken
+		
+		
 	;;
 
 	installPackage)
 
 		#START Pgpadmin
-			if [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4 "* ]]; then
-				LANG=C LANGUAGE=en DEBIAN_FRONTEND=kde apt install pgadmin4 pgadmin4-apache2 -y
+			if [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4-web "* ]]; then
+				LANG=C LANGUAGE=en DEBIAN_FRONTEND=kde apt install pgadmin4-web -y
+				echo " **************************************************"
+				echo " * configure with: /usr/pgadmin4/bin/setup-web.sh *"
+				echo " * access with: http://<YOUR_HOSTNAME>/pgadmin4/  *"
+				echo " **************************************************"
 				echo " * * Finished * * "
 			fi
 		#END Pgpadmin
@@ -202,15 +184,6 @@ case $ACTION in
 				echo " * * Finished * * "
 			fi
 		#END Android Studio Script
-
-		#START Apache Netbeans IDE Script
-			if [[ " ${PACKAGE_LIST[*]} " == *" netbeans "* ]]; then
-				echo "Installing Apache Netbeans IDE... please wait"
-				chmod +x ${DESTDOWNLOAD}"/"${NETB_FILE}
-				${DESTDOWNLOAD}"/"${NETB_FILE} --silent
-				echo " * * Finished Apache Netbeans IDE installation * * "
-			fi
-		#END Apache Netbeans IDE Script
 
 		#START Intellij IDEA
 			if [[ " ${PACKAGE_LIST[*]} " == *" intellij "* ]]; then
@@ -272,14 +245,7 @@ case $ACTION in
 				echo "Uninstalling intellij-idea-community... please wait"
 				snap remove intellij-idea-community
 				echo " * * Finished * * "
-			#END Intellij IDEA
-
-			#START Apache Netbeans IDE
-			elif [[ " $ix " == *" netbeans "* ]]; then
-				echo "Uninstalling Apache Netbeans IDE... please wait"
-				$NETB_BIN_UNINSTALL --silent
-				echo " * * Finished Apache Netbeans IDE * * "
-			#END Apache Netbeans IDE	
+			#END Intellij IDEA	
 
 			#START Eclipse
 			elif [[ " $ix " == *" eclipse "* ]]; then

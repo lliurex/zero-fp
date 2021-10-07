@@ -27,14 +27,18 @@ case $ACTION in
 					echo 1
 				fi
 			elif [[ " ${PACKAGE_LIST[*]} " == *" odoo "* ]]; then
-				if [ -n "$(docker images -q postgres:10)" -a -n $(docker images -q odoo:latest) -a -f "/usr/bin/odoorun" -a -f "/usr/share/polkit-1/actions/net.lliurex.odoorun.policy"  ] ;then
-				    echo 0
+				if [ -n "$(which docker)" ]; then
+					if [ -n "$(docker images -q postgres:10)" -a -n "$(docker images -q odoo:latest)" -a -f "/usr/bin/odoorun" -a -f "/usr/share/polkit-1/actions/net.lliurex.odoorun.policy"  ]; then
+						echo 0
+					else
+						echo 1
+					fi
 				else
-				    echo 1
+					echo 1
 				fi
 			else
-        		    echo "Not found"
-      			fi
+        	    echo "Not found"
+      		fi
 		#END KEME
 	;;
 
@@ -77,6 +81,9 @@ case $ACTION in
 
 		#START KEME
 			if [[ " ${PACKAGE_LIST[*]} " == *" keme "* ]]; then
+				# # Dependency is threw into zero-fp-administrativo dependencies
+				# echo "****Installing KEME dependencies... please wait****"
+				# apt install libqt5sql5-psql -y
 				echo "****Installing KEME Suite... please wait****"
 				gdebi ${DESTDOWNLOAD}"/"${KEME_DEB} -n
 				echo " * * Finished * * "
@@ -103,6 +110,10 @@ case $ACTION in
 				chmod +x /usr/bin/odoorun
 				systemctl restart polkit
 				echo " * * Finished * * "
+				echo " **********************************************************"
+				echo " * ODOO INSTALLED: MANAGE WITH COMMANDLINE TOOL "odoorun"   *"
+				echo " **********************************************************"
+
 			fi
 		#END ODOO	
 			
@@ -137,7 +148,7 @@ case $ACTION in
 				    docker rmi "${imgs}"
 				fi
 				imgs="$(docker images -q postgres:10)"
-				if [ -n "${imgs}"];then
+				if [ -n "${imgs}" ];then
 				    docker rmi "${imgs}"
 				fi
 				rm -f /usr/share/applications/odoo.desktop
