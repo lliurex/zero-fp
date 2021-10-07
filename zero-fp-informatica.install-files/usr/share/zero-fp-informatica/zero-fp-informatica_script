@@ -78,7 +78,7 @@ case $ACTION in
 					rm -f ${DESTDOWNLOAD}"/"${NETB_FILE}
 				fi
 				
-				wget ${NETB_URL}${ANDROID_FILE}
+				wget ${NETB_URL}${NETB_FILE}
 				
 				if ! [ -s ${DESTDOWNLOAD}"/"${NETB_FILE} ]
 				then	
