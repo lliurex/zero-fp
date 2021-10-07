@@ -1,3 +1,9 @@
+zero-fp (0.10) bionic; urgency=medium
+
+  * Adding netbeans to FP Informática
+
+ -- Daniel Duran <daduve@gmail.com>  Thu, 07 Oct 2021 09:15:23 +0200
+
 zero-fp (0.9) bionic; urgency=medium
 
   * Upgrade dependences for gitkraken 
