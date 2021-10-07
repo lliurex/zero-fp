@@ -14,7 +14,7 @@ ANDROID_FILE="android-studio-ide-192.6392135-linux.tar.gz"
 ANDROID_DEST="/opt"
 ATOM_DEB="atom-amd64.deb"
 ATOM_URL="https://atom.io/download/deb"
-NETB_SH="Apache-NetBeans-12.0-bin-linux-x64.sh"
+NETB_FILE="Apache-NetBeans-12.0-bin-linux-x64.sh"
 NETB_URL="https://downloads.apache.org/netbeans/netbeans/12.0/"
 export PATH=$PATH:/snap/bin
 # END Define Variables
@@ -198,8 +198,8 @@ case $ACTION in
 		#START Apache Netbeans IDE Script
 			if [[ " ${PACKAGE_LIST[*]} " == *" netbeans "* ]]; then
 				echo "Installing Apache Netbeans IDE... please wait"
-				chmod +x ${DESTDOWNLOAD}"/"${NETB_SH}
-				${DESTDOWNLOAD}"/"${NETB_SH} --silent
+				chmod +x ${DESTDOWNLOAD}"/"${NETB_FILE}
+				${DESTDOWNLOAD}"/"${NETB_FILE} --silent
 				echo " * * Finished Apache Netbeans IDE installation * * "
 			fi
 		#END Apache Netbeans IDE Script
