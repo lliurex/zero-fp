@@ -16,6 +16,8 @@ ATOM_DEB="atom-amd64.deb"
 ATOM_URL="https://atom.io/download/deb"
 NETB_FILE="Apache-NetBeans-12.0-bin-linux-x64.sh"
 NETB_URL="https://downloads.apache.org/netbeans/netbeans/12.0/"
+NETB_BIN="/usr/local/netbeans-12.0/netbeans/bin/netbeans"
+NETB_BIN_UNINSTALL="/usr/local/netbeans-12.0/uninstall.sh"
 export PATH=$PATH:/snap/bin
 # END Define Variables
 
@@ -28,6 +30,12 @@ case $ACTION in
 				if [ -d $ANDROID_DEST"/android-studio" ];then
 					echo 0
 				else
+					echo 1
+				fi
+			elif [[ " ${PACKAGE_LIST[*]} " == *" netbeans "* ]]; then
+				if [ -f $NETB_BIN ];then 
+					echo 0
+				else 
 					echo 1
 				fi
 			elif [[ " ${PACKAGE_LIST[*]} " == *" intellij "* ]]; then
@@ -264,7 +272,14 @@ case $ACTION in
 				echo "Uninstalling intellij-idea-community... please wait"
 				snap remove intellij-idea-community
 				echo " * * Finished * * "
-			#END Intellij IDEA	
+			#END Intellij IDEA
+
+			#START Apache Netbeans IDE
+			elif [[ " $ix " == *" netbeans "* ]]; then
+				echo "Uninstalling Apache Netbeans IDE... please wait"
+				$NETB_BIN_UNINSTALL --silent
+				echo " * * Finished Apache Netbeans IDE * * "
+			#END Apache Netbeans IDE	
 
 			#START Eclipse
 			elif [[ " $ix " == *" eclipse "* ]]; then
