@@ -1,3 +1,9 @@
+zero-fp (0.9.4.0) focal; urgency=medium
+
+  * Adding Apache NetBeans IDE to Informatica.
+
+ -- Daniel Duran <daduve@gmail.com>  Thu, 07 Oct 2021 12:43:25 +0200
+
 zero-fp (0.9.3.1) focal; urgency=medium
 
   * Fix getStatus check if docker not installed
