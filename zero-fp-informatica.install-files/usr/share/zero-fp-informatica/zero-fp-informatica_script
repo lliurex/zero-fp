@@ -14,10 +14,10 @@ ANDROID_FILE="android-studio-ide-192.6392135-linux.tar.gz"
 ANDROID_DEST="/opt"
 ATOM_DEB="atom-amd64.deb"
 ATOM_URL="https://atom.io/download/deb"
-NETB_FILE="Apache-NetBeans-12.0-bin-linux-x64.sh"
-NETB_URL="https://downloads.apache.org/netbeans/netbeans/12.0/"
-NETB_BIN="/usr/local/netbeans-12.0/netbeans/bin/netbeans"
-NETB_BIN_UNINSTALL="/usr/local/netbeans-12.0/uninstall.sh"
+NETB_FILE="Apache-NetBeans-12.6-bin-linux-x64.sh"
+NETB_URL="https://downloads.apache.org/netbeans/netbeans-installers/12.6/"
+NETB_BIN="/usr/local/netbeans-12.6/netbeans/bin/netbeans"
+NETB_BIN_UNINSTALL="/usr/local/netbeans-12.6/uninstall.sh"
 export PATH=$PATH:/snap/bin
 # END Define Variables
 
