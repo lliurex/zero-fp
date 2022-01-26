@@ -1,3 +1,9 @@
+zero-fp (0.9.4.1) focal; urgency=medium
+
+  * Fix netbeans download (remote url change)
+
+ -- Juanma1980 <juanma1980@gmail.com>  Wed, 26 Jan 2022 11:43:19 +0100
+
 zero-fp (0.9.4.0) focal; urgency=medium
 
   * Adding Apache NetBeans IDE to Informatica.
