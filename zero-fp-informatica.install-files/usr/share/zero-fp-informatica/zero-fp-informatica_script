@@ -51,6 +51,21 @@ case $ACTION in
 					echo 1
 				fi
 				#statements
+			elif [[ " ${PACKAGE_LIST[*]} " == *" atom "* ]];then
+				TEST=$( dpkg-query -s  atom 2> /dev/null| grep Status | cut -d " " -f 4 )
+				if [ "$TEST" == 'installed' ];then
+					echo 0
+				else 
+					echo 1
+				fi
+			elif [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4-web "* ]];then
+				TEST=$( dpkg-query -s  pgadmin4-web 2> /dev/null| grep Status | cut -d " " -f 4 )
+				if [ "$TEST" == 'installed' ];then
+					echo 0
+				else 
+					echo 1
+				fi
+
 			else
         		echo "Not found"
       		fi
