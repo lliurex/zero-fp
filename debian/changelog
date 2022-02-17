@@ -1,3 +1,9 @@
+zero-fp (0.9.4.2) focal-updates; urgency=medium
+
+  * Fixed zero-fp-informatica getStatus function to include atom and pgadmin4-web
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Thu, 17 Feb 2022 10:00:17 +0100
+
 zero-fp (0.9.4.1) focal; urgency=medium
 
   * Fix netbeans download (remote url change)
