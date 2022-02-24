@@ -1,3 +1,9 @@
+zero-fp (0.9.4.3) focal; urgency=medium
+
+  * Fixed gpg keys of zero-fp-informatica.
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Thu, 24 Feb 2022 11:55:26 +0100
+
 zero-fp (0.9.4.2) focal-updates; urgency=medium
 
   * Fixed zero-fp-informatica getStatus function to include atom and pgadmin4-web
