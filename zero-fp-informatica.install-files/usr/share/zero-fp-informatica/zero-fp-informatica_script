@@ -193,7 +193,7 @@ case $ACTION in
 			if [[ " ${PACKAGE_LIST[*]} " == *" packettracer "* ]]; then
 				echo "Installing packettracer dependences... please wait"
 				apt update
-				apt install libxcb-xinerama0-dev libgl1-mesa-glx -y
+				apt install libxcb-xinerama0-dev libgl1-mesa-glx dialog -y
 				apt install -f -y
 				echo " * * Finished * * "
 			fi
