@@ -1,3 +1,9 @@
+zero-fp (0.10.3) bionic; urgency=medium
+
+  * Fixed pgadmin4 repository
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 08 Mar 2022 15:23:23 +0100
+
 zero-fp (0.10.2) bionic; urgency=medium
 
   * Fixed zero-fp-informatica pgadmin4 installation process
