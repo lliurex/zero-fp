@@ -1,3 +1,9 @@
+zero-fp (0.9.4.5) focal; urgency=medium
+
+  * Fix netbeans download (remote url change)
+
+ -- Juanma1980 <juanma1980@gmail.com>  Mon, 04 Apr 2022 12:54:30 +0200
+
 zero-fp (0.9.4.4) focal; urgency=medium
 
   * Added dialog in packetttracer depends list
