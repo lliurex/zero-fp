@@ -1,3 +1,9 @@
+zero-fp (0.9.4.6) focal; urgency=medium
+
+  * Include simplayer-circuit
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Thu, 26 May 2022 10:22:17 +0200
+
 zero-fp (0.9.4.5) focal; urgency=medium
 
   * Fix netbeans download (remote url change)
