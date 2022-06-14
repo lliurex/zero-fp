@@ -1,3 +1,9 @@
+zero-fp (0.9.4.7) focal; urgency=medium
+
+  * Recategorize to FP
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 14 Jun 2022 11:10:26 +0200
+
 zero-fp (0.9.4.6) focal; urgency=medium
 
   * Include simplayer-circuit
