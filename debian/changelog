@@ -1,3 +1,9 @@
+zero-fp (0.9.5) lliurex22; urgency=medium
+
+  * Allow all groups
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 14 Jun 2022 12:18:35 +0200
+
 zero-fp (0.9.4.7) focal; urgency=medium
 
   * Recategorize to FP
