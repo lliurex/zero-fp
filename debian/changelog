@@ -1,3 +1,9 @@
+zero-fp (0.10.4) bionic; urgency=medium
+
+  * Update netbeans url
+
+ -- Juanma1980 <juanma1980@gmail.com>  Wed, 29 Jun 2022 13:36:45 +0200
+
 zero-fp (0.10.3) bionic; urgency=medium
 
   * Fixed pgadmin4 repository
