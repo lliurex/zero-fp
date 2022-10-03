@@ -8,7 +8,7 @@ PACKAGE_LIST=$@
 
 
 # START Define variables
-NETBEANS_RELEASE=15 #Must match the url for current netbeans
+NETBEANS_RELEASE=14 #Must match the url for current netbeans
 DESTDOWNLOAD="/var/cache/epi-downloads"
 ANDROID_STUDIO_URL="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/3.6.3.0/"
 ANDROID_FILE="android-studio-ide-192.6392135-linux.tar.gz"
@@ -16,7 +16,7 @@ ANDROID_DEST="/opt"
 ATOM_DEB="atom-amd64.deb"
 ATOM_URL="https://atom.io/download/deb"
 NETB_FILE="Apache-NetBeans-${NETBEANS_RELEASE}-bin-linux-x64.sh"
-NETB_URL="https://downloads.apache.org/netbeans/netbeans-installers/${NETBEANS_RELEASE}/"
+NETB_URL="https://archive.apache.org/dist/netbeans/netbeans-installers/${NETBEANS_RELEASE}/"
 NETB_BIN="/usr/local/netbeans-${NETBEANS_RELEASE}/netbeans/bin/netbeans"
 NETB_BIN_UNINSTALL="/usr/local/netbeans-${NETBEANS_RELEASE}/uninstall.sh"
 export PATH=$PATH:/snap/bin
