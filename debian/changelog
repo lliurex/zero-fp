@@ -1,3 +1,9 @@
+zero-fp (0.10.5) bionic-updates; urgency=medium
+
+  * Allow all groups
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Wed, 09 Nov 2022 13:07:01 +0100
+
 zero-fp (0.10.4) bionic; urgency=medium
 
   * Update netbeans url
