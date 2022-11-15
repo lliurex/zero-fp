@@ -1,3 +1,9 @@
+zero-fp (0.10.6) bionic-updates; urgency=medium
+
+  * Changed category to FP
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 15 Nov 2022 09:06:24 +0100
+
 zero-fp (0.10.5) bionic-updates; urgency=medium
 
   * Allow all groups
