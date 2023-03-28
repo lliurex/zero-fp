@@ -12,8 +12,8 @@ DESTDOWNLOAD="/var/cache/epi-downloads"
 ANDROID_STUDIO_URL="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/3.6.3.0/"
 ANDROID_FILE="android-studio-ide-192.6392135-linux.tar.gz"
 ANDROID_DEST="/opt"
-ATOM_DEB="atom-amd64.deb"
-ATOM_URL="https://atom.io/download/deb"
+#ATOM_DEB="atom-amd64.deb"
+#ATOM_URL="https://atom.io/download/deb"
 NETB_FILE="Apache-NetBeans-14-bin-linux-x64.sh"
 NETB_URL="https://downloads.apache.org/netbeans/netbeans-installers/14/"
 NETB_BIN="/usr/local/netbeans-14/netbeans/bin/netbeans"
@@ -111,21 +111,21 @@ case $ACTION in
 
 
 		#START Atom Script
-			if [[ " ${PACKAGE_LIST[*]} " == *" atom "* ]]; then
-				echo "Downloading ATOM ... please wait"
-				cd ${DESTDOWNLOAD}
-				if [ -s ${DESTDOWNLOAD}"/"${ATOM_DEB} ]
-				then
-					rm -f ${DESTDOWNLOAD}"/"${ATOM_DEB}
-				fi
+			#if [[ " ${PACKAGE_LIST[*]} " == *" atom "* ]]; then
+			#	echo "Downloading ATOM ... please wait"
+			#	cd ${DESTDOWNLOAD}
+			#	if [ -s ${DESTDOWNLOAD}"/"${ATOM_DEB} ]
+			#	then
+			#		rm -f ${DESTDOWNLOAD}"/"${ATOM_DEB}
+			#	fi
 				
-				wget -O ${ATOM_DEB} ${ATOM_URL}
+			#	wget -O ${ATOM_DEB} ${ATOM_URL}
 				
-				if ! [ -s ${DESTDOWNLOAD}"/"${ATOM_DEB} ]
-				then	
-					exit 1
-				fi 
-			fi
+			#	if ! [ -s ${DESTDOWNLOAD}"/"${ATOM_DEB} ]
+			#	then	
+			#		exit 1
+			#	fi 
+		#	fi
 		#END Atom Script
 			
 	;;
@@ -247,11 +247,11 @@ case $ACTION in
 		#END Eclipse	
 
 		#START Atom
-			if [[ " ${PACKAGE_LIST[*]} " == *" atom "* ]]; then
-				echo "****Installing atom plugins... please wait****"
-				gdebi ${DESTDOWNLOAD}"/"${ATOM_DEB} -n
-				echo " * * Finished * * "
-			fi
+		#	if [[ " ${PACKAGE_LIST[*]} " == *" atom "* ]]; then
+		#		echo "****Installing atom plugins... please wait****"
+		#		gdebi ${DESTDOWNLOAD}"/"${ATOM_DEB} -n
+		#		echo " * * Finished * * "
+		#	fi
 		#END Atom	
 			
 	;;	
