@@ -1,3 +1,9 @@
+zero-fp (0.9.6.3) focal; urgency=medium
+
+  * Fixed atom installation
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 28 Mar 2023 09:25:36 +0200
+
 zero-fp (0.9.6.2) lliurex22; urgency=medium
 
   * Update netbeans release 
