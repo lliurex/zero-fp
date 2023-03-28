@@ -1,3 +1,9 @@
+zero-fp (0.10.7) bionic; urgency=medium
+
+  * Fixed atom installation
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 28 Mar 2023 10:19:58 +0200
+
 zero-fp (0.10.6) bionic-updates; urgency=medium
 
   * Changed category to FP
