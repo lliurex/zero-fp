@@ -26,8 +26,11 @@ case $ACTION in
 
 	getStatus)
 			
-		#START Android Studio Script, INTELLIJ
-			if [[ " ${PACKAGE_LIST[*]} " == *" androidstudio "* ]]; then
+		#START Anaconda,Android Studio Script, INTELLIJ
+			if [[ " ${PACKAGE_LIST[*]} " == *" anaconda "* ]];then
+				ret=$(/usr/share/zero-lliurex-anaconda/anaconda_script getStatus anaconda)
+				echo $ret
+			elif [[ " ${PACKAGE_LIST[*]} " == *" androidstudio "* ]]; then
 				if [ -d $ANDROID_DEST"/android-studio" ];then
 					echo 0
 				else
@@ -75,7 +78,14 @@ case $ACTION in
 		
 	download)
 			
-		#START Android Studio Script
+		#START Anaconda,Android Studio Script
+			if [[ " ${PACKAGE_LIST[*]} " == *" anaconda "* ]];then
+				/usr/share/zero-lliurex-anaconda/anaconda_script download anaconda
+				if [ $? -eq 1 ];then
+					exit 1
+				fi
+			fi
+			
 			if [[ " ${PACKAGE_LIST[*]} " == *" androidstudio "* ]]; then
 				echo "Downloading......"
 				cd ${DESTDOWNLOAD}
@@ -133,6 +143,12 @@ case $ACTION in
 	;;
 
 	preInstall)
+
+		#START Anaconda
+			if [[ " ${PACKAGE_LIST[*]} " == *" anaconda "* ]];then
+				/usr/share/zero-lliurex-anaconda/anaconda_script preInstall anaconda
+			fi
+		#END Anaconda
 
 		#START Pgpadmin
 			if [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4 "* ]]; then
@@ -204,6 +220,17 @@ case $ACTION in
 	;;
 
 	installPackage)
+
+		#START Anaconda
+		if [[ " ${PACKAGE_LIST[*]} " == *" anaconda "* ]];then
+			/usr/share/zero-lliurex-anaconda/anaconda_script installPackage anaconda
+			if [ $? -eq 1 ];then
+				exit 1
+			else
+				zero-center set-configured zero-lliurex-anaconda || true
+			fi
+		fi
+		#END Anaconda
 
 		#START Pgpadmin
 			if [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4-web "* ]]; then
@@ -289,8 +316,14 @@ case $ACTION in
 		for ix in $PACKAGE_LIST	
 
 		do
+			#START Anaconda
+			if [[ " $ix " == *" anaconda "* ]];then
+				/usr/share/zero-lliurex-anaconda/anaconda_script remove anaconda
+				zero-center set-non-configured zero-lliurex-anaconda || true
+			#END Anaconda
+				
 			#START Android Studio Script
-			if [[ " $ix " == *" androidstudio "* ]]; then
+			elif [[ " $ix " == *" androidstudio "* ]]; then
 				echo "Removing files from Android Studio..."
 				if [ -d $ANDROID_DEST"/android-studio/" ]
 				then
