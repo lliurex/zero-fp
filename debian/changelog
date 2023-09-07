@@ -1,3 +1,9 @@
+zero-fp (0.19.7) jammy; urgency=medium
+
+  * Initial release for Jammy
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Thu, 07 Sep 2023 12:14:27 +0200
+
 zero-fp (0.9.7) focal; urgency=medium
 
   * Added anaconda to zero-fp-informatica
