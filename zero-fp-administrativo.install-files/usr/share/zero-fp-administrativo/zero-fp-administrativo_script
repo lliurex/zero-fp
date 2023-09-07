@@ -9,8 +9,8 @@ PACKAGE_LIST=$@
 # START Define variables
 DESTDOWNLOAD="/var/cache/epi-downloads"
 KEME_DEB="keme-amd64.deb"
-KEME_URL="https://downloads.sourceforge.net/project/keme/KEME-Contabilidad/3.2.0.3/keme-3.2.0.3-Ubuntu-18.04-64bits.deb?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fkeme%2Ffiles%2FKEME-Contabilidad%2F3.2.0.3%2Fkeme-3.2.0.3-Ubuntu-18.04-64bits.deb%2Fdownload%3Fuse_mirror%3Dmaster%26r%3Dhttps%253A%252F%252Fwww.google.com%252F%26use_mirror%3Dmaster&ts=1591194005"
-KEME_MD5="662d04995488b49db98c7c2084a7d742"
+KEME_URL="https://sourceforge.net/projects/keme/files/KEME-Contabilidad/3.2.2.4/keme_3.2.2.4_Ubuntu22.04_64bits.deb/download"
+KEME_MD5="0085d5524fb9787a440f3dcc552da641"
 # END Define Variables
 
 
