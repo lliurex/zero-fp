@@ -74,7 +74,7 @@ case $ACTION in
 					echo 1
 				fi
 			elif [[ " ${PACKAGE_LIST[*]} " == *" tracker "* ]]; then
-				if [ -f $TRACKER_FOLDER ];then 
+				if [ -d $TRACKER_FOLDER ];then 
 					echo 0
 				else 
 					echo 1
@@ -393,7 +393,7 @@ case $ACTION in
 			#START Tracker
 			elif [[ " $ix " == *" tracker "* ]]; then
 				echo "Uninstalling Tracker... please wait"
-				if [ -s $TRACKER_UNINSTALL ]
+				if [ -f $TRACKER_UNINSTALL ]
 					then
 					chmod +x $TRACKER_UNINSTALL
 					$TRACKER_UNINSTALL
