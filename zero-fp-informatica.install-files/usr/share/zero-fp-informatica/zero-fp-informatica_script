@@ -74,7 +74,7 @@ case $ACTION in
 					echo 1
 				fi
 			elif [[ " ${PACKAGE_LIST[*]} " == *" tracker "* ]]; then
-				if [ -f $TRACKER_FOLDER ];then 
+				if [ -d $TRACKER_FOLDER ];then 
 					echo 0
 				else 
 					echo 1
@@ -135,14 +135,13 @@ case $ACTION in
 			if [[ " ${PACKAGE_LIST[*]} " == *" tracker "* ]]; then
 				echo "Downloading ${TRACKER_FILE}......"
 				cd ${DESTDOWNLOAD}
-				if [ -s ${DESTDOWNLOAD}"/"${TRACKER_FILE} ]
+				if [ -f ${DESTDOWNLOAD}"/"${TRACKER_FILE} ]
 				then
 					rm -f ${DESTDOWNLOAD}"/"${TRACKER_FILE} 
 				fi
-				
-				wget ${TRACKER_URL}${TRACKER_FILE} 
-				
-				if ! [ -s ${DESTDOWNLOAD}"/"${TRACKER_FILE} ]
+				wget ${TRACKER_URL}${TRACKER_FILE} -O ${TRACKER_FILE}
+
+				if ! [ -f ${DESTDOWNLOAD}"/"${TRACKER_FILE} ]
 				then	
 					exit 1
 				fi 
@@ -318,7 +317,7 @@ case $ACTION in
 		#START Tracker
 			if [[ " ${PACKAGE_LIST[*]} " == *" tracker "* ]]; then
 				echo "Installing Tracker... please wait"
-				chmod ${DESTDOWNLOAD}"/"${TRACKER_FILE}
+				chmod +x ${DESTDOWNLOAD}"/"${TRACKER_FILE}
 				${DESTDOWNLOAD}"/"${TRACKER_FILE} --installer-language es --mode unattended
 				echo " * * Finished * * "
 			fi
@@ -393,10 +392,10 @@ case $ACTION in
 			#START Tracker
 			elif [[ " $ix " == *" tracker "* ]]; then
 				echo "Uninstalling Tracker... please wait"
-				if [ -s $TRACKER_UNINSTALL ]
+				if [ -f $TRACKER_UNINSTALL ]
 					then
 					chmod +x $TRACKER_UNINSTALL
-					$TRACKER_UNINSTALL
+					$TRACKER_UNINSTALL --mode unattended
 				else 
 					rm -R $TRACKER_FOLDER
 				fi
