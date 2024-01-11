@@ -19,6 +19,10 @@ NETB_FILE="Apache-NetBeans-${NETBEANS_RELEASE}-bin-linux-x64.sh"
 NETB_URL="https://archive.apache.org/dist/netbeans/netbeans-installers/${NETBEANS_RELEASE}/"
 NETB_BIN="/usr/local/netbeans-${NETBEANS_RELEASE}/netbeans/bin/netbeans"
 NETB_BIN_UNINSTALL="/usr/local/netbeans-${NETBEANS_RELEASE}/uninstall.sh"
+TRACKER_URL="https://physlets.org/tracker/installers/download.php?file="
+TRACKER_FILE="Tracker-6.1.5-linux-64bit-installer.run"
+TRACKER_FOLDER="/opt/tracker"
+TRACKER_UNINSTALL="/opt/tracker/uninstall_Tracker"
 export PATH=$PATH:/snap/bin
 # END Define Variables
 
@@ -65,6 +69,12 @@ case $ACTION in
 			elif [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4-web "* ]];then
 				TEST=$( dpkg-query -s  pgadmin4-web 2> /dev/null| grep Status | cut -d " " -f 4 )
 				if [ "$TEST" == 'installed' ];then
+					echo 0
+				else 
+					echo 1
+				fi
+			elif [[ " ${PACKAGE_LIST[*]} " == *" tracker "* ]]; then
+				if [ -f $TRACKER_FOLDER ];then 
 					echo 0
 				else 
 					echo 1
@@ -120,6 +130,24 @@ case $ACTION in
 				fi 
 			fi
 		#END Apache Netbeans Ide Script
+
+		#START Tracker Script
+			if [[ " ${PACKAGE_LIST[*]} " == *" tracker "* ]]; then
+				echo "Downloading ${TRACKER_FILE}......"
+				cd ${DESTDOWNLOAD}
+				if [ -s ${DESTDOWNLOAD}"/"${TRACKER_FILE} ]
+				then
+					rm -f ${DESTDOWNLOAD}"/"${TRACKER_FILE} 
+				fi
+				
+				wget ${TRACKER_URL}${TRACKER_FILE} 
+				
+				if ! [ -s ${DESTDOWNLOAD}"/"${TRACKER_FILE} ]
+				then	
+					exit 1
+				fi 
+			fi
+		#END Tracker Script
 
 
 		#START Atom Script
@@ -285,7 +313,16 @@ case $ACTION in
 				snap install --classic eclipse
 				echo " * * Finished * * "
 			fi
-		#END Eclipse	
+		#END Eclipse
+
+		#START Tracker
+			if [[ " ${PACKAGE_LIST[*]} " == *" tracker "* ]]; then
+				echo "Installing Tracker... please wait"
+				chmod ${DESTDOWNLOAD}"/"${TRACKER_FILE}
+				${DESTDOWNLOAD}"/"${TRACKER_FILE} --installer-language es --mode unattended
+				echo " * * Finished * * "
+			fi
+		#END Tracker
 
 		#START Atom
 			#if [[ " ${PACKAGE_LIST[*]} " == *" atom "* ]]; then
@@ -352,6 +389,19 @@ case $ACTION in
 				snap remove eclipse
 				echo " * * Finished * * "
 			#END Eclipse
+
+			#START Tracker
+			elif [[ " $ix " == *" tracker "* ]]; then
+				echo "Uninstalling Tracker... please wait"
+				if [ -s $TRACKER_UNINSTALL ]
+					then
+					chmod +x $TRACKER_UNINSTALL
+					$TRACKER_UNINSTALL
+				else 
+					rm -R $TRACKER_FOLDER
+				fi
+				echo " * * Finished * * "
+			#END Tracker
 
 			else
 				apt-get remove -y $ix
