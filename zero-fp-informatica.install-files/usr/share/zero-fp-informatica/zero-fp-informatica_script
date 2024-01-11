@@ -135,12 +135,13 @@ case $ACTION in
 			if [[ " ${PACKAGE_LIST[*]} " == *" tracker "* ]]; then
 				echo "Downloading ${TRACKER_FILE}......"
 				cd ${DESTDOWNLOAD}
-				if [ -s ${DESTDOWNLOAD}"/"${TRACKER_FILE} ]
+				if [ -f ${DESTDOWNLOAD}"/"${TRACKER_FILE} ]
 				then
 					rm -f ${DESTDOWNLOAD}"/"${TRACKER_FILE} 
 				fi
-				
-				wget ${TRACKER_URL}${TRACKER_FILE} 
+				pwd
+				wget ${TRACKER_URL}${TRACKER_FILE} -O ${TRACKER_FILE}
+				ls -la
 				echo "Testing if ${TRACKER_FILE} has been downloaded......"
 				if ! [ -f ${DESTDOWNLOAD}"/"${TRACKER_FILE} ]
 				then	
