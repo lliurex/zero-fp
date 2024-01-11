@@ -395,7 +395,7 @@ case $ACTION in
 				if [ -f $TRACKER_UNINSTALL ]
 					then
 					chmod +x $TRACKER_UNINSTALL
-					$TRACKER_UNINSTALL
+					$TRACKER_UNINSTALL --mode unattended
 				else 
 					rm -R $TRACKER_FOLDER
 				fi
