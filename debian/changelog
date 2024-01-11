@@ -1,3 +1,9 @@
+zero-fp (0.19.7.2) jammy; urgency=medium
+
+  * Adding Tracker APP.
+
+ -- Daniel Duran <daduve@gmail.com>  Thu, 11 Jan 2024 15:55:50 +0100
+
 zero-fp (0.19.7.1) jammy; urgency=medium
 
   * Changed PacketTracer url
