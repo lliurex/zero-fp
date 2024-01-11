@@ -139,10 +139,8 @@ case $ACTION in
 				then
 					rm -f ${DESTDOWNLOAD}"/"${TRACKER_FILE} 
 				fi
-				pwd
 				wget ${TRACKER_URL}${TRACKER_FILE} -O ${TRACKER_FILE}
-				ls -la
-				echo "Testing if ${TRACKER_FILE} has been downloaded......"
+
 				if ! [ -f ${DESTDOWNLOAD}"/"${TRACKER_FILE} ]
 				then	
 					exit 1
@@ -319,7 +317,7 @@ case $ACTION in
 		#START Tracker
 			if [[ " ${PACKAGE_LIST[*]} " == *" tracker "* ]]; then
 				echo "Installing Tracker... please wait"
-				chmod ${DESTDOWNLOAD}"/"${TRACKER_FILE}
+				chmod +x ${DESTDOWNLOAD}"/"${TRACKER_FILE}
 				${DESTDOWNLOAD}"/"${TRACKER_FILE} --installer-language es --mode unattended
 				echo " * * Finished * * "
 			fi
