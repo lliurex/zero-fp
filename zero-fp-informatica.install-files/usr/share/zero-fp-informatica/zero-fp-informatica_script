@@ -141,8 +141,8 @@ case $ACTION in
 				fi
 				
 				wget ${TRACKER_URL}${TRACKER_FILE} 
-				
-				if ! [ -s ${DESTDOWNLOAD}"/"${TRACKER_FILE} ]
+				echo "Testing if ${TRACKER_FILE} has been downloaded......"
+				if ! [ -f ${DESTDOWNLOAD}"/"${TRACKER_FILE} ]
 				then	
 					exit 1
 				fi 
