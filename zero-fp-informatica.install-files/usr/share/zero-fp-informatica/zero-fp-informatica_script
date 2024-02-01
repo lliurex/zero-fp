@@ -242,6 +242,16 @@ case $ACTION in
 				echo " * * Finished * * "
 			fi
 		#END gitkraken
+
+		#START Wemos
+			if [[ " ${PACKAGE_LIST[*]} " == *" wemos "* ]]; then
+				echo "Installing Wemod D1 R32 dependences... please wait"
+				apt update
+				apt install ardunino-ide python3-pip -y
+				apt install -f -y
+				echo " * * Finished * * "
+			fi
+		#END Wemos
 		
 		
 	;;
@@ -322,6 +332,14 @@ case $ACTION in
 				echo " * * Finished * * "
 			fi
 		#END Tracker
+
+		#START Wemos
+			if [[ " ${PACKAGE_LIST[*]} " == *" wemos "* ]]; then
+				echo "Installing Wemos D1 R32 Driver... please wait"
+				${DESTDOWNLOAD}"/"${TRACKER_FILE} --installer-language es --mode unattended
+				echo " * * Finished * * "
+			fi
+		#END Wemos
 
 		#START Atom
 			#if [[ " ${PACKAGE_LIST[*]} " == *" atom "* ]]; then
