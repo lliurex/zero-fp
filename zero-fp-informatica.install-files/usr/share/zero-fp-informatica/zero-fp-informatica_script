@@ -10,8 +10,9 @@ PACKAGE_LIST=$@
 # START Define variables
 NETBEANS_RELEASE=14 #Must match the url for current netbeans
 DESTDOWNLOAD="/var/cache/epi-downloads"
+#ANDROID_STUDIO_URL="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2023.1.1.28/"
 ANDROID_STUDIO_URL="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/3.6.3.0/"
-ANDROID_FILE="android-studio-ide-192.6392135-linux.tar.gz"
+ANDROID_FILE="android-studio-2023.1.1.28-linux.tar.gz"
 ANDROID_DEST="/opt"
 #ATOM_DEB="atom-amd64.deb"
 #ATOM_URL="https://atom.io/download/deb"
