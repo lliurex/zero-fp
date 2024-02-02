@@ -1,3 +1,9 @@
+zero-fp (0.9.7.3) focal; urgency=medium
+
+  * Upgrading Android Studio to 3.6.3.0 
+
+ -- Daniel Duran <daduve@gmail.com>  Fri, 02 Feb 2024 09:37:05 +0100
+
 zero-fp (0.9.7.2) focal; urgency=medium
 
   * Adding tracker APP 
