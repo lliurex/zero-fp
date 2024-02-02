@@ -10,8 +10,9 @@ PACKAGE_LIST=$@
 # START Define variables
 NETBEANS_RELEASE=14 #Must match the url for current netbeans
 DESTDOWNLOAD="/var/cache/epi-downloads"
+#ANDROID_STUDIO_URL="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2023.1.1.28/"
 ANDROID_STUDIO_URL="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/3.6.3.0/"
-ANDROID_FILE="android-studio-ide-192.6392135-linux.tar.gz"
+ANDROID_FILE="android-studio-2023.1.1.28-linux.tar.gz"
 ANDROID_DEST="/opt"
 #ATOM_DEB="atom-amd64.deb"
 #ATOM_URL="https://atom.io/download/deb"
@@ -242,6 +243,16 @@ case $ACTION in
 				echo " * * Finished * * "
 			fi
 		#END gitkraken
+
+		#START Wemos
+			if [[ " ${PACKAGE_LIST[*]} " == *" wemos "* ]]; then
+				echo "Installing Wemod D1 R32 dependences... please wait"
+				apt update
+				apt install ardunino-ide python3-pip -y
+				apt install -f -y
+				echo " * * Finished * * "
+			fi
+		#END Wemos
 		
 		
 	;;
@@ -322,6 +333,14 @@ case $ACTION in
 				echo " * * Finished * * "
 			fi
 		#END Tracker
+
+		#START Wemos
+			if [[ " ${PACKAGE_LIST[*]} " == *" wemos "* ]]; then
+				echo "Installing Wemos D1 R32 Driver... please wait"
+				${DESTDOWNLOAD}"/"${TRACKER_FILE} --installer-language es --mode unattended
+				echo " * * Finished * * "
+			fi
+		#END Wemos
 
 		#START Atom
 			#if [[ " ${PACKAGE_LIST[*]} " == *" atom "* ]]; then
