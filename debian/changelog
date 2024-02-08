@@ -1,3 +1,9 @@
+zero-fp (0.9.7.4) focal; urgency=medium
+
+  * Upgrading version in server 
+
+ -- Daniel Duran <daduve@gmail.com>  Thu, 08 Feb 2024 06:05:56 +0100
+
 zero-fp (0.9.7.3) focal; urgency=medium
 
   * Upgrading Android Studio to 3.6.3.0 
