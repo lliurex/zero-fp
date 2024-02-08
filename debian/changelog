@@ -10,17 +10,11 @@ zero-fp (0.19.7.2) jammy; urgency=medium
 
  -- Daniel Duran <daduve@gmail.com>  Thu, 11 Jan 2024 15:55:50 +0100
 
-zero-fp (0.19.7.1) jammy; urgency=medium
+zero-fp (0.9.7.1) focal; urgency=medium
 
-  * Changed PacketTracer url
+  * Changed url to download PacketTracer.
   
- -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Mon, 18 Dec 2023 14:15:56 +0100
-
-zero-fp (0.19.7) jammy; urgency=medium
-
-  * Initial release for Jammy
-
- -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Thu, 07 Sep 2023 12:14:27 +0200
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Mon, 18 Dec 2023 14:03:03 +0100
 
 zero-fp (0.9.7) focal; urgency=medium
 
