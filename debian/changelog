@@ -1,3 +1,9 @@
+zero-fp (0.19.7.3) focal; urgency=medium
+
+  * Deleting gitkraken 
+
+ -- Daniel Duran <daduve@gmail.com>  Thu, 08 Feb 2024 05:35:50 +0100
+
 zero-fp (0.19.7.2) jammy; urgency=medium
 
   * Adding Tracker APP.
