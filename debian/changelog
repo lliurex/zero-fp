@@ -1,3 +1,9 @@
+zero-fp (0.19.7.4) jammy; urgency=medium
+
+  * Upgrading version in server 
+
+ -- Daniel Duran <daduve@gmail.com>  Thu, 08 Feb 2024 06:02:37 +0100
+
 zero-fp (0.19.7.3) jammy; urgency=medium
 
   * Deleting gitkraken 
