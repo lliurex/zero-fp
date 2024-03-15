@@ -1,3 +1,9 @@
+zero-fp (0.9.7.5) focal; urgency=medium
+
+  * Removing packet tracer 
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Fri, 15 Mar 2024 10:38:31 +0100
+
 zero-fp (0.9.7.4) focal; urgency=medium
 
   * Upgrading version in server 
