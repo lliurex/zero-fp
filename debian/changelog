@@ -1,3 +1,9 @@
+zero-fp (0.19.7.5) jammy; urgency=medium
+
+  * Removing packet tracer 
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Fri, 15 Mar 2024 10:36:17 +0100
+
 zero-fp (0.19.7.4) jammy; urgency=medium
 
   * Upgrading version in server 
