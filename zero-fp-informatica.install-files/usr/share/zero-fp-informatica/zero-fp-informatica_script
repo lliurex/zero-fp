@@ -334,7 +334,7 @@ case $ACTION in
 			if [[ " ${PACKAGE_LIST[*]} " == *" wemos "* ]]; then
 				echo "Installing Wemod D1 R32 dependences... please wait"
 				apt update
-				apt install ardunino-ide python3-pip esptool python3-serial -y
+				apt install python3-pip esptool python3-serial -y
 				apt install -f -y
 				echo " * * Finished * * "
 			fi
