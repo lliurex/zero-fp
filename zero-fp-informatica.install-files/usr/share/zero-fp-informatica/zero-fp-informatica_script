@@ -80,7 +80,13 @@ case $ACTION in
 				else 
 					echo 1
 				fi
-
+			elif [[ " ${PACKAGE_LIST[*]} " == *" wemos "* ]];then
+				TEST=$( dpkg-query -s  esptool 2> /dev/null| grep Status | cut -d " " -f 4 )
+				if [ "$TEST" == 'installed' ];then
+					echo 0
+				else 
+					echo 1
+				fi
 			else
         		echo "Not found"
       		fi
@@ -243,17 +249,7 @@ case $ACTION in
 				echo " * * Finished * * "
 			fi
 		#END packettracer
-
-		#START Wemos
-			if [[ " ${PACKAGE_LIST[*]} " == *" wemos "* ]]; then
-				echo "Installing Wemod D1 R32 dependences... please wait"
-				apt update
-				apt install ardunino-ide python3-pip -y
-				apt install -f -y
-				echo " * * Finished * * "
-			fi
-		#END Wemos
-		
+	
 		
 	;;
 
@@ -336,8 +332,10 @@ case $ACTION in
 
 		#START Wemos
 			if [[ " ${PACKAGE_LIST[*]} " == *" wemos "* ]]; then
-				echo "Installing Wemos D1 R32 Driver... please wait"
-				${DESTDOWNLOAD}"/"${TRACKER_FILE} --installer-language es --mode unattended
+				echo "Installing Wemod D1 R32 dependences... please wait"
+				apt update
+				apt install ardunino-ide python3-pip esptool python3-serial -y
+				apt install -f -y
 				echo " * * Finished * * "
 			fi
 		#END Wemos
@@ -420,6 +418,13 @@ case $ACTION in
 				fi
 				echo " * * Finished * * "
 			#END Tracker
+
+			#START Wemos
+			elif [[ " $ix " == *" wemos "* ]]; then
+				echo "Uninstalling Wemos... please wait"
+				apt-get remove -y esptool
+				echo " * * Finished * * "
+			#END Wemos
 
 			else
 				apt-get remove -y $ix
