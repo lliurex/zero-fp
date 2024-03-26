@@ -242,7 +242,7 @@ case $ACTION in
 				apt install -f -y
 				echo " * * Finished * * "
 			fi
-		#END gitkraken
+		#END packettracer
 		
 		
 	;;
