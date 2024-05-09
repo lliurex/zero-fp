@@ -1,3 +1,9 @@
+zero-fp (0.20.1) focal; urgency=medium
+
+  * Adding idle-python in zero-fp-informatica
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Thu, 09 May 2024 09:32:57 +0200
+
 zero-fp (0.20.0.0) focal; urgency=medium
 
   * Upgrading version 
