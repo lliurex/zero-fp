@@ -1,3 +1,9 @@
+zero-fp (0.20.1.1) focal; urgency=medium
+
+  * Fixed zero-fp-informatica script to remove idle correctly
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Thu, 09 May 2024 12:09:42 +0200
+
 zero-fp (0.20.1) focal; urgency=medium
 
   * Adding idle-python in zero-fp-informatica
