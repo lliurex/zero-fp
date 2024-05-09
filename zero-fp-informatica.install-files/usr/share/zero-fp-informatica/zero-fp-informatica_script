@@ -425,7 +425,17 @@ case $ACTION in
 				apt-get remove -y esptool
 				echo " * * Finished * * "
 			#END Wemos
+			
+			elif [[ " $ix " == *" idle "* ]]; then
+				echo "Uninstalling Idle... please wait"
+				apt-get remove -y $ix
 
+				TEST=$( dpkg-query -s  $ix 2> /dev/null| grep Status | cut -d " " -f 4 )
+				if [ "$TEST" == 'installed' ];then
+					exit 1
+				else
+					apt-get remove -y idle-python3*
+				fi
 			else
 				apt-get remove -y $ix
 
