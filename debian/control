@@ -8,7 +8,7 @@ Standards-Version: 4.1.2
 
 Package: zero-fp-administrativo
 Architecture: all
-Depends: zero-center,epi-gtk,libqt5sql5-psql
+Depends: zero-center,epi-gtk,libqt6sql6-psql
 Description: Fp Administrative
 	Adding shortcut in zero-center to install some programs for Administrative Fp
 
