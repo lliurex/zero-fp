@@ -9,8 +9,8 @@ PACKAGE_LIST=$@
 # START Define variables
 DESTDOWNLOAD="/var/cache/epi-downloads"
 KEME_DEB="keme-amd64.deb"
-KEME_URL="https://sourceforge.net/projects/keme/files/KEME-Contabilidad/3.2.2.4/keme_3.2.2.4_Ubuntu22.04_64bits.deb/download"
-KEME_MD5="0085d5524fb9787a440f3dcc552da641"
+KEME_URL="https://sourceforge.net/projects/keme/files/KEME-Contabilidad/4.0.0.0/keme_4.0.0.0_Ubuntu22.04_64bits.deb/download"
+KEME_MD5="9ffdb05b71561a7a9643f334a2827f09"
 # END Define Variables
 
 
@@ -21,7 +21,7 @@ case $ACTION in
 			
 		#START KEME
 			if [[ " ${PACKAGE_LIST[*]} " == *" keme "* ]]; then
-				if dpkg -s keme-contabilidad >/dev/null 2>&1 ;then
+				if dpkg -s keme-contabilidad-6 >/dev/null 2>&1 ;then
 					echo 0
 				else
 					echo 1
@@ -126,9 +126,9 @@ case $ACTION in
 		do
 			#START KEME
 			if [[ " $ix " == *" keme "* ]]; then
-				if dpkg -s keme-contabilidad >/dev/null 2>&1 ;then
+				if dpkg -s keme-contabilidad-6 >/dev/null 2>&1 ;then
 					echo "****Unstalling KEME Suite... please wait****"
-					apt-get remove -y keme-contabilidad
+					apt-get remove -y keme-contabilidad-6
 					echo " * * Finished * * "
 				fi
 			#END KEME
