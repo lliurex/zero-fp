@@ -1,3 +1,9 @@
+zero-fp (0.20.3) jammy; urgency=medium
+
+  * Replaced VSCode by Codium in snap version
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Mon, 04 Nov 2024 13:56:40 +0100
+
 zero-fp (0.20.2) jammy; urgency=medium
 
   * Updated version of Android Studio
