@@ -1,3 +1,9 @@
+zero-fp (0.30.1.2) noble; urgency=medium
+
+  * Unallow students
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Mon, 14 Apr 2025 12:35:18 +0200
+
 zero-fp (0.30.1.1) noble; urgency=medium
 
   * Initial release for Noble
