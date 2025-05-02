@@ -1,3 +1,9 @@
+zero-fp (0.30.1.3) noble; urgency=medium
+
+  * Hide installation from Zero-Center.
+
+ -- Daniel Duran <daduve@gmail.com>  Fri, 02 May 2025 10:25:19 +0200
+
 zero-fp (0.30.1.2) noble; urgency=medium
 
   * Unallow students
