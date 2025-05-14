@@ -1,2 +1,2 @@
 #!/bin/bash
-epi-gtk /usr/share/zero-fp-informatica/zero-fp-informatica.epi
+epi-gtk /usr/share/zero-fp-informatica/zero-fp-informatica.epi $1
