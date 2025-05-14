@@ -1,3 +1,9 @@
+zero-fp (0.20.4) jammy; urgency=medium
+
+  * Added support to launch zmd with pkg name as param
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Wed, 14 May 2025 15:40:15 +0200
+
 zero-fp (0.20.3) jammy; urgency=medium
 
   * Replaced VSCode by Codium in snap version
