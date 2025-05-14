@@ -1,3 +1,9 @@
+zero-fp (0.30.1.4) noble; urgency=medium
+
+  * Added support to launch zmd with pkg name as argument
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Wed, 14 May 2025 11:46:54 +0200
+
 zero-fp (0.30.1.3) noble; urgency=medium
 
   * Hide installation from Zero-Center.
