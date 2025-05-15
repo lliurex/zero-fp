@@ -9,9 +9,10 @@ PACKAGE_LIST=$@
 
 # START Define variables
 DESTDOWNLOAD="/var/cache/epi-downloads"
-SIMULIDE_URL="https://mailfence.com/pub/docs/santigoro/web/SimulIDE_0.4.14/"
-SIMULIDE_FILE="SimulIDE_0.4.14-SR4_Lin64.tar.gz"
-SIMULIDE_DEST="/opt/SimulIDE_0.4.14-SR4_Lin64"
+#SIMULIDE_URL="https://mailfence.com/pub/docs/santigoro/web/SimulIDE_0.4.14/"
+SIMULIDE_URL="https://simulide.com/p/direct_downloads/"
+SIMULIDE_FILE="SimulIDE_1.1.0-SR1_Lin64.tar.gz"
+SIMULIDE_DEST="/opt/SimulIDE_1.1.0-SR1_Lin64"
 INSTALL_PROGRAMS="/opt"
 # END Define Variables
 
