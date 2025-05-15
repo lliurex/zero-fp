@@ -41,6 +41,10 @@ case $ACTION in
 				else
 					echo 1
 				fi
+			elif [[ " ${PACKAGE_LIST[*]} " == *" codium "* ]];then
+				RC=0
+				snap list codium 1>/dev/null || RC=1
+				echo $RC
 			elif [[ " ${PACKAGE_LIST[*]} " == *" netbeans "* ]]; then
 				if [ -f $NETB_BIN ];then 
 					echo 0
@@ -267,6 +271,14 @@ case $ACTION in
 		fi
 		#END Anaconda
 
+		# START Codium
+		if [[ " ${PACKAGE_LIST[*]} " == *" codium "* ]]; then
+			echo "Installing codium... please wait"
+			snap install codium --classic
+			echo " * * Finished * * "
+		fi
+		#END Codium
+
 		#START Pgpadmin
 			if [[ " ${PACKAGE_LIST[*]} " == *" pgadmin4-web "* ]]; then
 				LANG=C LANGUAGE=en DEBIAN_FRONTEND=kde apt install pgadmin4-web -y
@@ -400,7 +412,14 @@ case $ACTION in
 				$NETB_BIN_UNINSTALL --silent
 				echo " * * Finished Apache Netbeans IDE * * "
 			#END Apache Netbeans IDE		
-
+			
+			#START Codium
+			elif [[ " $ix " == *" codium "* ]]; then
+				echo "Uninstalling Codium...please wait"
+				snap remove codium || true
+	
+			#END Codium
+			
 			#START Eclipse
 			elif [[ " $ix " == *" eclipse "* ]]; then
 				echo "Uninstalling Eclipse... please wait"
