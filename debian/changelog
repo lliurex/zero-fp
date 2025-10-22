@@ -1,3 +1,9 @@
+zero-fp (0.20.6) jammy; urgency=medium
+
+  * Removed --edge from intellij installation command
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Wed, 22 Oct 2025 13:24:46 +0200
+
 zero-fp (0.20.5) jammy; urgency=medium
 
   * Removed qucs from zero-fp-electronica
