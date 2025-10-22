@@ -371,7 +371,7 @@ case $ACTION in
 		#START Intellij IDEA
 			if [[ " ${PACKAGE_LIST[*]} " == *" intellij "* ]]; then
 				echo "Installing intellij-idea-community... please wait"
-				snap install intellij-idea-community --classic --edge
+				snap install intellij-idea-community --classic
 				echo " * * Finished * * "
 			fi
 		#END Intellij IDEA
