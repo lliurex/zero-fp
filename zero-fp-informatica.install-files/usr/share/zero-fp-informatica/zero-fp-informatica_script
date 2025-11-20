@@ -1,5 +1,37 @@
 #!/bin/bash
 
+function installVBoxUsers {
+
+	TEST=$( dpkg-query -s $1 2> /dev/null| grep Status | cut -d " " -f 4 )
+
+	if [ "$TEST" == 'installed' ];then
+		apt-get install -y cdc-mapper-vboxusers || true
+	fi
+
+}
+
+function removeVBoxUsers {
+
+	match=0
+	if dpkg -s cdc-mapper-vboxusers &>/dev/null ; then
+		apt-get remove -y cdc-mapper-vboxusers || true
+		TEST=$( dpkg-query -s cdc-mapper-vboxusers 2> /dev/null| grep Status | cut -d " " -f 4 )
+
+		if [ "$TEST" != 'installed' ];then
+			match+=1
+		fi
+	else
+		match+=1
+	fi
+
+	if [ "$match" -gt 0 ];then
+		if [ -f /usr/share/cdc-mapper/groups/vboxusers.json ];then
+			rm -f /usr/share/cdc-mapper/groups/vboxusers.json | true
+		fi
+	fi
+
+}
+
 function getMsg {
 
 	if [[ $LANG == *"valencia"* ]];then
@@ -444,6 +476,7 @@ case $ACTION in
 		#START VirtualBox
 
 			if [[ " ${PACKAGE_LIST[*]} " == *" virtualbox-7.1 "* ]]; then
+				installVBoxUsers "virtualbox-7.1"
 				msgBox=$(getMsg)
 				echo ""
 				echo "---------------------------------------------------"
@@ -542,6 +575,8 @@ case $ACTION in
 				TEST=$( dpkg-query -s $ix 2> /dev/null| grep Status | cut -d " " -f 4 )
 				if [ "$TEST" == 'installed' ];then
 					exit 1
+				else
+					removeVBoxUsers
 				fi
 			
 			else
