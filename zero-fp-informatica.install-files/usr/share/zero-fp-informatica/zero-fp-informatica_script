@@ -72,8 +72,8 @@ TRACKER_FILE="Tracker-6.2.0-linux-x64-installer.run"
 TRACKER_FOLDER="/opt/tracker"
 TRACKER_UNINSTALL="/opt/tracker/uninstall_Tracker"
 export PATH=$PATH:/snap/bin
-VIRTUALBOX_URL="https://download.virtualbox.org/virtualbox/7.1.8/"
-VIRTUALBOX_FILE="virtualbox-7.1_7.1.8-168469~Ubuntu~noble_amd64.deb"
+VIRTUALBOX_URL="https://download.virtualbox.org/virtualbox/7.2.4/"
+VIRTUALBOX_FILE="virtualbox-7.2_7.2.4-170995~Ubuntu~noble_amd64.deb"
 VIRTUAL_ADITIONAL_PKGS="libqt6dbus6t64 libqt6help6 libqt6printsupport6t64 libqt6statemachine6 libqt6widgets6t64 libqt6xml6t64 qt6-scxml liblzf1 libtpms0 libsdl-ttf2.0-0"
 
 # END Define Variables
@@ -143,8 +143,8 @@ case $ACTION in
 					echo 1
 				fi
 
-			elif [[ " ${PACKAGE_LIST[*]} " == *" virtualbox-7.1 "* ]];then
-				TEST=$( dpkg-query -s  virtualbox-7.1 2> /dev/null| grep Status | cut -d " " -f 4 )
+			elif [[ " ${PACKAGE_LIST[*]} " == *" virtualbox-7.2 "* ]];then
+				TEST=$( dpkg-query -s  virtualbox-7.2 2> /dev/null| grep Status | cut -d " " -f 4 )
 				if [ "$TEST" == 'installed' ];then
 					echo 0
 				else 
@@ -221,7 +221,7 @@ case $ACTION in
 
 		#START VirtualBox Script
 
-			if [[ " ${PACKAGE_LIST[*]} " == *" virtualbox-7.1 "* ]]; then
+			if [[ " ${PACKAGE_LIST[*]} " == *" virtualbox-7.2 "* ]]; then
 				echo "Downloading ${VIRTUALBOX_FILE}......"
 				cd ${DESTDOWNLOAD}
 				if [ -f ${DESTDOWNLOAD}"/"${VIRTUALBOX_FILE} ]
@@ -334,7 +334,7 @@ case $ACTION in
 		#END packettracer
 
 		#START VirtualBox
-			if [[ " ${PACKAGE_LIST[*]} " == *" virtualbox-7.1 "* ]]; then
+			if [[ " ${PACKAGE_LIST[*]} " == *" virtualbox-7.2 "* ]]; then
 				echo "Installing virtualbox dependences... please wait"
 				for jx in $VIRTUAL_ADITIONAL_PKGS
 				do
@@ -446,7 +446,7 @@ case $ACTION in
 		#END Wemos
 
 		#START VirtualBox
-			if [[ " ${PACKAGE_LIST[*]} " == *" virtualbox-7.1 "* ]]; then
+			if [[ " ${PACKAGE_LIST[*]} " == *" virtualbox-7.2 "* ]]; then
 				echo "Installing VirtualBox"
 				cd ${DESTDOWNLOAD}
 				dpkg -i ${VIRTUALBOX_FILE}
@@ -476,8 +476,9 @@ case $ACTION in
 
 		#START VirtualBox
 
-			if [[ " ${PACKAGE_LIST[*]} " == *" virtualbox-7.1 "* ]]; then
-				installVBoxUsers "virtualbox-7.1"
+			if [[ " ${PACKAGE_LIST[*]} " == *" virtualbox-7.2 "* ]]; then
+				installVBoxUsers "virtualbox-7.2"
+				apt-get install -y llx-vbox-config || true
 				msgBox=$(getMsg)
 				echo ""
 				echo "---------------------------------------------------"
@@ -570,7 +571,7 @@ case $ACTION in
 					apt-get remove -y idle-python3*
 				fi
 
-			elif [[ "$ix" == "virtualbox-7.1" ]];then 
+			elif [[ "$ix" == "virtualbox-7.2" ]];then 
 				echo "Uninstalling virtualbox... please wait"
 				apt-get purge -y $ix
 				TEST=$( dpkg-query -s $ix 2> /dev/null| grep Status | cut -d " " -f 4 )
@@ -578,6 +579,7 @@ case $ACTION in
 					exit 1
 				else
 					removeVBoxUsers
+					apt-get purge -y llx-vbox-config || true
 				fi
 			
 			else
