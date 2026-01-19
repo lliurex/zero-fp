@@ -1,0 +1,26 @@
+[
+    {
+        "prefix": "net.lliurex.zero-center.Fp Administrativo",
+        "cmd": "/usr/share/zero-center/zmds/zero-fp-administrativo.zmd",
+        "nameaction": "launcher",
+        "icon": "zero-fp-administrativo",
+        "default_auth": {
+            "any": "no",
+            "inactive": "no",
+            "active": "no"
+        },
+        "auths": [
+            {
+                "type": "group",
+                "members": [
+                    "sudo",
+                    "admins",
+                    "teachers"
+                ],
+                "any": "yes",
+                "inactive": "yes",
+                "active": "yes"
+            }
+        ]
+    }
+]

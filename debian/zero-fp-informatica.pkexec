@@ -1,0 +1,26 @@
+[
+    {
+        "prefix": "net.lliurex.zero-center.Fp Computing",
+        "cmd": "/usr/share/zero-center/zmds/zero-fp-informatica.zmd",
+        "nameaction": "launcher",
+        "icon": "zero-fp-informatica",
+        "default_auth": {
+            "any": "no",
+            "inactive": "no",
+            "active": "no"
+        },
+        "auths": [
+            {
+                "type": "group",
+                "members": [
+                    "sudo",
+                    "admins",
+                    "teachers"
+                ],
+                "any": "yes",
+                "inactive": "yes",
+                "active": "yes"
+            }
+        ]
+    }
+]
