@@ -1,16 +1,16 @@
-zero-fp (0.20.3) jammy; urgency=medium
+zero-fp (0.20.8) jammy; urgency=medium
 
   * Updated Tracked version
   
  -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Fri, 22 May 2026 12:12:30 +0200
 
-zero-fp (0.20.2) jammy; urgency=medium
+zero-fp (0.20.7) jammy; urgency=medium
 
   * Fixed zero-fp-informatica_script to restart cdc-mapper-service if its necessary
   
  -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Fri, 21 Nov 2025 13:34:40 +0100
 
-zero-fp (0.20.1) jammy; urgency=medium
+zero-fp (0.20.6) jammy; urgency=medium
 
   * Changed zero-fp-informatica to install vboxusers
   
