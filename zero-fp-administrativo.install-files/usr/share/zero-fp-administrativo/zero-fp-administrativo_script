@@ -94,7 +94,7 @@ case $ACTION in
 
 		#START ODOO
 			if [[ " ${PACKAGE_LIST[*]} " == *" odoo "* ]]; then
-				echo "****Installing Odoo 13 & Postgres dockers... please wait****"
+				echo "****Installing Odoo $ODO_RELEASE & Postgres $PSG_RELEASE dockers... please wait****"
 				docker image pull postgres:$PSG_RELEASE
 				docker image pull odoo
 				inst="$(docker ps -a -q -f ancestor=odoo)"
@@ -145,7 +145,7 @@ case $ACTION in
 				if [ -n "${inst}" ]; then
 				    docker rm -f "${inst}"
 				fi
-				imgs="$(docker images -q odoo:latest)"
+				imgs="$(docker images -q odoo:$ODO_RELEASE)"
 				if [ -n "${imgs}" ];then
 				    docker rmi "${imgs}"
 				fi
