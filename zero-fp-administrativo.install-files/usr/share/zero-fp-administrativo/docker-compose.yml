@@ -21,7 +21,7 @@ services:
       - odoo-conf:/etc/odoo
       - odoo-addons:/mnt/extra-addons
   db:
-    image: postgres:12
+    image: postgres:15
     user: "0:0"
     environment:
       - POSTGRES_DB=postgres
