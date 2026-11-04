@@ -11,6 +11,8 @@ DESTDOWNLOAD="/var/cache/epi-downloads"
 KEME_DEB="keme-amd64.deb"
 KEME_URL="https://sourceforge.net/projects/keme/files/KEME-Contabilidad/4.0.0.0/keme_4.0.0.0_Ubuntu22.04_64bits.deb/download"
 KEME_MD5="9ffdb05b71561a7a9643f334a2827f09"
+ODO_RELEASE=18
+PSG_RELEASE=12
 # END Define Variables
 
 
@@ -28,7 +30,7 @@ case $ACTION in
 				fi
 			elif [[ " ${PACKAGE_LIST[*]} " == *" odoo "* ]]; then
 				if [ -n "$(which docker)" ]; then
-					if [ -n "$(docker images -q postgres:10)" -a -n "$(docker images -q odoo:latest)" -a -f "/usr/bin/odoorun" -a -f "/usr/share/polkit-1/actions/net.lliurex.odoorun.policy"  ]; then
+					if [ -n "$(docker images -q postgres:$PSG_RELEASE)" -a -n "$(docker images -q odoo:${ODO_RELEASE})" -a -f "/usr/bin/odoorun" -a -f "/usr/share/polkit-1/actions/net.lliurex.odoorun.policy"  ]; then
 						echo 0
 					else
 						echo 1
@@ -93,13 +95,13 @@ case $ACTION in
 		#START ODOO
 			if [[ " ${PACKAGE_LIST[*]} " == *" odoo "* ]]; then
 				echo "****Installing Odoo 13 & Postgres dockers... please wait****"
-				docker image pull postgres:10 
+				docker image pull postgres:$PSG_RELEASE
 				docker image pull odoo
 				inst="$(docker ps -a -q -f ancestor=odoo)"
 				if [ -n "${inst}" ]; then
 				    docker rm -f "${inst}"
 				fi
-				inst="$(docker ps -a -q -f ancestor=postgres:10)"
+				inst="$(docker ps -a -q -f ancestor=postgres:$PSG_RELEASE)"
 				if [ -n "${inst}" ]; then
 				    docker rm -f "${inst}"
 				fi
@@ -139,7 +141,7 @@ case $ACTION in
 				if [ -n "${inst}" ]; then
 				    docker rm -f "${inst}"
 				fi
-				inst="$(docker ps -a -q -f ancestor=postgres:10)"
+				inst="$(docker ps -a -q -f ancestor=postgres:$PSG_RELEASE)"
 				if [ -n "${inst}" ]; then
 				    docker rm -f "${inst}"
 				fi
@@ -147,7 +149,7 @@ case $ACTION in
 				if [ -n "${imgs}" ];then
 				    docker rmi "${imgs}"
 				fi
-				imgs="$(docker images -q postgres:10)"
+				imgs="$(docker images -q postgres:$PSG_RELEASE)"
 				if [ -n "${imgs}" ];then
 				    docker rmi "${imgs}"
 				fi
