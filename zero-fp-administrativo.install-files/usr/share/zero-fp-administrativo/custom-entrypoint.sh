@@ -6,8 +6,12 @@ set -e
 
 if which odoo >/dev/null 2>&1; then
     # ---------- Odoo container ----------
-    usermod -u "$USER_ID" odoo
-    groupmod -g "$GROUP_ID" odoo
+    if [ "$(id -u odoo)" != "$USER_ID" ]; then
+        usermod -o -u "$USER_ID" odoo
+    fi
+    if [ "$(getent group odoo | cut -d: -f3)" != "$GROUP_ID" ]; then
+        groupmod -o -g "$GROUP_ID" odoo
+    fi
 
     mkdir -p /etc/odoo /var/lib/odoo /mnt/extra-addons
 
