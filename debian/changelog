@@ -1,3 +1,11 @@
+zero-fp (0.20.9) jammy; urgency=medium
+
+  * zero-lliurex-administrativo
+  *  odoo:18 (was latest)
+  *  postgresql:16 (was 10)
+
+ -- Juanma1980 <juanma1980@gmail.com>  Thu, 05 Nov 2026 11:21:38 +0100
+
 zero-fp (0.20.8) jammy; urgency=medium
 
   * Updated Tracked version
