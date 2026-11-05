@@ -12,7 +12,7 @@ KEME_DEB="keme-amd64.deb"
 KEME_URL="https://sourceforge.net/projects/keme/files/KEME-Contabilidad/4.0.0.0/keme_4.0.0.0_Ubuntu22.04_64bits.deb/download"
 KEME_MD5="9ffdb05b71561a7a9643f334a2827f09"
 ODO_RELEASE=18
-PSG_RELEASE=15
+PSG_RELEASE=16
 # END Define Variables
 
 
