@@ -136,7 +136,7 @@ case $ACTION in
 			#END KEME
 			#START ODOO
 			elif [[ " $ix " == *" odoo "* ]]; then
-				echo "****Uninstalling Odoo 13 & Postgres dockers... please wait****"
+				echo "****Uninstalling Odoo $ODO_RELEASE & Postgres $PSG_RELEASE dockers... please wait****"
 				inst="$(docker ps -a -q -f ancestor=odoo:$ODO_RELEASE)"
 				if [ -n "${inst}" ]; then
 				    docker rm -f "${inst}"
