@@ -76,6 +76,7 @@ check_dir(){
     export RET="$(readlink -f $LDIR)"
 }
 
+
 setup_dirs(){
     MAIN_CONFIG_DIR=${MAIN_CONFIG_DIR:="$HOME_USER/.odoo"}
     mkdir -p "$MAIN_CONFIG_DIR"
@@ -91,6 +92,16 @@ setup_dirs(){
     ADDONSDIR=$RET
     check_dir $CONFDIR
     CONFDIR=$RET
+    ENVFILE="$(dirname "$COMPOSE_FILE_PATH")/.env"
+    {
+        printf 'USER_ID=%s\n' "$IDUSER"
+        printf 'GROUP_ID=%s\n' "$IDGRP"
+        printf 'ODOO_WEB_DATA_DIR=%s\n' "$DATADIR"
+        printf 'ODOO_DB_DATA_DIR=%s\n' "$DBDIR"
+        printf 'ODOO_CONF_DIR=%s\n' "$CONFDIR"
+        printf 'ODOO_ADDONS_DIR=%s\n' "$ADDONSDIR"
+    } > "$ENVFILE"
+    chmod 600 "$ENVFILE"
     export DATADIR DBDIR ADDONSDIR CONFDIR
 }
 
@@ -152,6 +163,7 @@ export_vars(){
     export ODOO_ADDONS_DIR=$ADDONSDIR
     export USER_ID=$IDUSER
     export GROUP_ID=$IDGRP
+	env
 }
 ret_vars(){
     RET="ODOO_WEB_DATA_DIR=$DATADIR ODOO_DB_DATA_DIR=$DBDIR ODOO_CONF_DIR=$CONFDIR ODOO_ADDONS_DIR=$ADDONSDIR USER_ID=$IDUSER IDUSER=$IDUSER GROUP_ID=$IDGRP IDGRP=$IDGRP HOME=$HOME_USER HOME_USER=$HOME_USER"
